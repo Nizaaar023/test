@@ -1,0 +1,2520 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noiré</title>
+    <meta name="description"
+        content="Noire Parfum - Brand parfum mewah yang memadukan rahasia alam, kemewahan seni wewangian Prancis, dan sentuhan modernitas. Temukan aroma jiwa Anda di sini.">
+
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-gold-light: #f1dfc4;
+            --color-gold: #c5a880;
+            --color-gold-dark: #a38053;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: #050505;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .font-serif {
+            font-family: var(--font-serif);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c5a880;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+
+        /* Gold Gradient Utilities */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #f1dfc4 0%, #c5a880 50%, #a38053 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gold-gradient {
+            background: linear-gradient(135deg, #f1dfc4 0%, #c5a880 50%, #a38053 100%);
+        }
+
+        .border-gold-gradient {
+            border-image: linear-gradient(135deg, #f1dfc4 0%, #c5a880 50%, #a38053 100%) 1;
+        }
+
+        /* Glassmorphism Styles */
+        .glass {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(197, 168, 128, 0.12);
+        }
+
+        .glass-premium {
+            background: linear-gradient(135deg, rgba(25, 25, 25, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(197, 168, 128, 0.22);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Subtle Glowing Effects */
+        .shadow-gold-glow {
+            box-shadow: 0 0 30px rgba(197, 168, 128, 0.15);
+        }
+
+        .shadow-gold-glow-lg {
+            box-shadow: 0 0 50px rgba(197, 168, 128, 0.25);
+        }
+
+        /* Active State for Tabs */
+        .tab-active {
+            color: #c5a880;
+            border-bottom: 2px solid #c5a880;
+        }
+
+        /* Floating Labels Styling */
+        .floating-input:focus~.floating-label,
+        .floating-input:not(:placeholder-shown)~.floating-label {
+            transform: translateY(-1.5rem) scale(0.85);
+            color: #c5a880;
+        }
+
+        /* Parallax Hero Image Container */
+        .parallax-container {
+            perspective: 1000px;
+        }
+
+        .parallax-image {
+            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-style: preserve-3d;
+        }
+
+        /* Elegant Underline Hover Effect for Navbar */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: #c5a880;
+            transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Scent Quiz Custom Animation */
+        .fade-slide-in {
+            animation: fadeSlideIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="selection:bg-[#c5a880] selection:text-neutral-900">
+
+    <div id="welcome-modal"
+        class="fixed inset-0 z-[100] flex items-center justify-center p-4 opacity-0 invisible transition-all duration-700">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+
+        <div
+            class="relative bg-neutral-950 border border-neutral-800 p-8 md:p-12 w-full max-w-lg text-center shadow-2xl transform scale-95 transition-transform duration-700">
+            <div
+                class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent">
+            </div>
+
+            <h2 class="font-sans text-3xl text-gold-500 mb-4">Bienvenue à Noiré</h2>
+            <p class="text-neutral-400 mb-8 font-light tracking-wide leading-relaxed">
+                Selamat datang di dunia kemewahan yang tersembunyi. Temukan koleksi parfum signature yang dirancang
+                khusus untuk
+                jiwa yang mencari misteri dan keanggunan.
+                <br>
+                <br>
+                <br>Website masih Prototype developer lagi belajar hehe<br>
+
+            </p>
+
+            <button onclick="closeWelcomeModal()"
+                class="px-8 py-3 bg-white text-black font-normal uppercase tracking-widest text-xs hover:bg-gold-500 hover:text-white transition-colors duration-300">
+                Jelajahi Koleksi
+            </button>
+        </div>
+    </div>
+
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group focus:outline-none">
+                <span
+                    class="font-sans text-2xl md:text-3xl tracking-[0.2em] font-medium text-white transition-all duration-300 group-hover:text-gold-gradient">
+                    Noiré
+                </span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-10">
+                <a href="#hero"
+                    class="nav-link text-xs uppercase tracking-[0.2em] text-neutral-300 hover:text-white transition-colors duration-300">Beranda</a>
+                <a href="#philosophy"
+                    class="nav-link text-xs uppercase tracking-[0.2em] text-neutral-300 hover:text-white transition-colors duration-300">Filosofi</a>
+                <a href="#collections"
+                    class="nav-link text-xs uppercase tracking-[0.2em] text-neutral-300 hover:text-white transition-colors duration-300">Koleksi</a>
+                <a href="#scent-finder"
+                    class="nav-link text-xs uppercase tracking-[0.2em] text-neutral-300 hover:text-white transition-colors duration-300">Scent
+                    Finder</a>
+                <a href="#testimonials"
+                    class="nav-link text-xs uppercase tracking-[0.2em] text-neutral-300 hover:text-white transition-colors duration-300">Ulasan</a>
+                <a href="#contact"
+                    class="nav-link text-xs uppercase tracking-[0.2em] text-neutral-300 hover:text-white transition-colors duration-300">Kontak</a>
+            </nav>
+
+            <div class="flex items-center gap-6">
+                <div class="relative group hidden lg:block">
+                    <button id="settings-btn"
+                        class="p-2.5 rounded-full border border-neutral-800 bg-neutral-900/50 hover:border-gold-500/50 hover:bg-neutral-900 text-neutral-400 hover:text-gold-400 transition-all duration-300 backdrop-blur-md"
+                        title="Pengaturan">
+                        <i data-lucide="settings" class="w-4 h-4 tracking-wider"></i>
+                    </button>
+
+                    <div
+                        class="absolute right-0 mt-3 w-48 bg-neutral-950/95 border border-neutral-900 rounded-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 backdrop-blur-xl shadow-2xl z-50">
+                        <a href="loginpage.html"
+                            class="flex items-center gap-3 px-4 py-2.5 mb-1 rounded-lg text-xs font-semibold text-white bg-gradient-to-r from-gold-600/20 to-transparent hover:from-gold-600/40 border border-gold-500/20 hover:border-gold-500/40 transition-all duration-300">
+                            <i data-lucide="user" class="w-4 h-4 text-gold-400"></i> Sign In
+                        </a>
+
+                        <div class="border-b border-neutral-900 my-1.5 mx-2"></div>
+
+                        <a href="#cart"
+                            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-xs text-neutral-400 hover:text-white hover:bg-neutral-900/50 transition-all relative group/item">
+                            <i data-lucide="shopping-cart" class="w-4 h-4 text-gold-500/70"></i> Keranjang
+
+                            <span
+                                class="absolute right-3 top-1/2 -translate-y-1/2 bg-gold-500 text-neutral-950 text-[9px] font-bold px-1.5 py-0.5 rounded-full scale-90 group-hover/item:scale-100 transition-transform">0</span>
+                        </a>
+                        <a href="#language"
+                            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-xs text-neutral-400 hover:text-white hover:bg-neutral-900/50 transition-all">
+                            <i data-lucide="languages" class="w-4 h-4 text-gold-500/70"></i> Bahasa
+                        </a>
+                    </div>
+                </div>
+                <button id="menu-btn" class="lg:hidden text-neutral-300 hover:text-white focus:outline-none"
+                    aria-label="Toggle Menu">
+                    <i data-lucide="menu" class="w-6 h-6 transition-transform duration-300"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-[#050505]/98 z-40 hidden flex-col justify-center items-center gap-8 transition-all duration-500">
+            <button id="close-menu-btn" class="absolute top-7 right-8 text-neutral-400 hover:text-white"
+                aria-label="Close Menu">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+
+            <a href="#hero"
+                class="mobile-nav-link font-serif text-2xl tracking-widest text-neutral-300 hover:text-white">Beranda</a>
+            <a href="#philosophy"
+                class="mobile-nav-link font-serif text-2xl tracking-widest text-neutral-300 hover:text-white">Filosofi</a>
+            <a href="#collections"
+                class="mobile-nav-link font-serif text-2xl tracking-widest text-neutral-300 hover:text-white">Koleksi</a>
+            <a href="#scent-finder"
+                class="mobile-nav-link font-serif text-2xl tracking-widest text-neutral-300 hover:text-white">Scent
+                Finder</a>
+            <a href="#testimonials"
+                class="mobile-nav-link font-serif text-2xl tracking-widest text-neutral-300 hover:text-white">Ulasan</a>
+            <a href="#contact"
+                class="mobile-nav-link font-serif text-2xl tracking-widest text-neutral-300 hover:text-white">Kontak</a>
+
+            <div class="w-full flex flex-col gap-4 border-t border-neutral-900 pt-6">
+                <a href="loginpage.html"
+                    class="mobile-nav-link flex items-center justify-center gap-3 w-full py-3 rounded-xl text-xs font-semibold uppercase tracking-widest text-white bg-gradient-to-r from-gold-600/20 to-neutral-900/50 border border-gold-500/20 hover:border-gold-500/40 transition-all duration-300">
+                    <i data-lucide="user" class="w-4 h-4 text-gold-400"></i> Sign In
+                </a>
+
+                <div class="border-b border-neutral-900/50 my-1"></div>
+
+                <a href="#cart" class="mobile-nav-link flex items-center justify-between w-full group py-2">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="shopping-cart"
+                            class="w-4 h-4 text-neutral-500 group-hover:text-gold-400 transition-colors"></i>
+                        <span
+                            class="text-xs uppercase tracking-widest font-medium text-neutral-400 group-hover:text-white transition-colors">Keranjang</span>
+                    </div>
+                    <span
+                        class="bg-gold-500 text-neutral-950 text-[10px] font-bold px-2 py-0.5 rounded-full mr-1">0</span>
+                </a>
+
+                <a href="#settings" class="mobile-nav-link flex items-center justify-between w-full group py-2">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="settings"
+                            class="w-4 h-4 text-neutral-500 group-hover:text-gold-400 transition-colors"></i>
+                        <span
+                            class="text-xs uppercase tracking-widest font-medium text-neutral-400 group-hover:text-white transition-colors">Settings</span>
+                    </div>
+                    <i data-lucide="chevron-right"
+                        class="w-4 h-4 text-neutral-600 group-hover:text-gold-400 transition-transform group-hover:translate-x-1"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+        <div
+            class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#c5a880]/5 rounded-full blur-[100px] pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-96 h-96 bg-[#a38053]/5 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <div
+            class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full z-10">
+
+            <div class="lg:col-span-6 flex flex-col justify-center text-center lg:text-left" data-aos="fade-right">
+                <div class="inline-flex items-center justify-center lg:justify-start gap-2 mb-6">
+                    <span class="h-[1px] w-8 bg-[#c5a880]/40"></span>
+                    <span class="text-xs uppercase tracking-[0.4em] text-[#c5a880] font-semibold">Elegance in Every
+                        Mystery.</span>
+                </div>
+
+                <h3 class="text-4xl md:text-5xl xl:text-6xl tracking-wide leading-[1.15] text-white mb-6">
+                    Keharuman Yang <br>
+                    <span class="text-gold-gradient">Menyingkap Misteri</span>
+                </h3>
+
+                <p
+                    class="text-neutral-400 text-sm md:text-base font-light tracking-wide leading-relaxed max-w-lg mx-auto lg:mx-0 mb-10">
+                    Perpaduan aroma yang elegan, dalam, dan memikat menciptakan karakter yang berani namun tetap
+                    berkelas. Setiap
+                    semprotan menghadirkan aura misterius yang membuat siapa pun ingin mengenal lebih dekat. Noiré hadir
+                    untuk
+                    mereka yang meninggalkan kesan tanpa banyak kata.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#collections"
+                        class="inline-flex items-center justify-center px-8 py-4 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold-gradient text-neutral-950 transition-all duration-300 hover:shadow-gold-glow-lg hover:scale-105">
+                        Jelajahi Koleksi
+                    </a>
+                    <a href="#scent-finder"
+                        class="inline-flex items-center justify-center px-8 py-4 rounded-full text-xs font-semibold tracking-widest uppercase bg-transparent border border-neutral-700 hover:border-[#c5a880] text-neutral-300 hover:text-white transition-all duration-300 hover:bg-neutral-900/40">
+                        Temukan Aromamu
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-3 gap-6 mt-16 pt-8 border-t border-neutral-900/60 max-w-md mx-auto lg:mx-0">
+                    <div>
+                        <p class="font-serif text-2xl text-white font-semibold">100%</p>
+                        <p class="text-[10px] uppercase tracking-wider text-neutral-500 mt-1">Eksklusif</p>
+                    </div>
+                    <div>
+                        <p class="font-serif text-2xl text-white font-semibold">12h+</p>
+                        <p class="text-[10px] uppercase tracking-wider text-neutral-500 mt-1">Daya Tahan</p>
+                    </div>
+                    <div>
+                        <p class="font-serif text-2xl text-white font-semibold">20k+</p>
+                        <p class="text-[10px] uppercase tracking-wider text-neutral-500 mt-1">Pecinta Aroma</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 flex justify-center items-center" data-aos="fade-left">
+                <div id="hero-image-wrap"
+                    class="parallax-container relative w-72 h-96 sm:w-80 sm:h-[480px] lg:w-[400px] lg:h-[550px] flex items-center justify-center">
+
+                    <div
+                        class="absolute inset-0 rounded-full border border-[#c5a880]/10 scale-95 animate-[spin_120s_linear_infinite] pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute inset-4 rounded-full border border-dashed border-[#c5a880]/5 scale-90 animate-[spin_60s_linear_reverse_infinite] pointer-events-none">
+                    </div>
+
+                    <div class="absolute w-60 h-60 bg-[#c5a880]/15 rounded-full blur-[60px] pointer-events-none"></div>
+
+                    <img id="hero-bottle" src="./assets/images/noire_hero_perfume_1779387234622.png"
+                        alt="Noire Parfum Luxury Bottle"
+                        class="parallax-image max-h-[85%] object-contain drop-shadow-[0_35px_50px_rgba(0,0,0,0.85)] z-10 cursor-pointer">
+
+                    <div
+                        class="absolute top-1/4 -left-6 bg-black/40 backdrop-blur-md border border-neutral-800/80 px-4 py-2.5 rounded-lg z-20 hidden sm:block shadow-2xl">
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-[#c5a880] font-bold">Top Note</p>
+                        <p class="text-xs text-white font-medium">French Lavender & Amber</p>
+                    </div>
+
+                    <div
+                        class="absolute bottom-1/4 -right-8 bg-black/40 backdrop-blur-md border border-neutral-800/80 px-4 py-2.5 rounded-lg z-20 hidden sm:block shadow-2xl">
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-[#c5a880] font-bold">Base Note</p>
+                        <p class="text-xs text-white font-medium">Dark Vanilla & Musk</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <a href="#philosophy"
+            class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group z-10">
+            <span
+                class="text-[10px] uppercase tracking-[0.3em] text-neutral-500 group-hover:text-white transition-colors duration-300">Scroll</span>
+            <div
+                class="w-[1px] h-10 bg-neutral-800 group-hover:bg-[#c5a880] transition-colors duration-300 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1/2 bg-[#c5a880] animate-[bounce_2s_infinite]"></div>
+            </div>
+        </a>
+    </section>
+
+    <section id="philosophy" class="py-24 relative overflow-hidden bg-[#070707]">
+        <div
+            class="absolute inset-0 opacity-[0.02] bg-[radial-gradient(#c5a880_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+
+            <div class="text-center max-w-2xl mx-auto mb-20" data-aos="fade-up">
+                <span class="text-xs uppercase tracking-[0.4em] text-[#c5a880] font-semibold">Filosofi Kami</span>
+                <h2 class="font-sans text-3xl md:text-4xl tracking-wide text-white mt-3">
+                    Lahir dari Kegelapan, <br>
+                    <span class="font-sans text-gold-gradient">Bersinar dalam Keanggunan</span>
+                </h2>
+                <div class="w-12 h-[1px] bg-[#c5a880] mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="glass p-8 md:p-10 rounded-2xl flex flex-col justify-between group hover:border-[#c5a880]/30 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div
+                            class="w-12 h-12 rounded-full bg-[#c5a880]/5 flex items-center justify-center border border-[#c5a880]/20 mb-8 group-hover:bg-[#c5a880] group-hover:text-neutral-950 transition-all duration-500">
+                            <i data-lucide="sparkles" class="w-5 h-5 text-[#c5a880] group-hover:text-neutral-950"></i>
+                        </div>
+                        <h3 class="font-sans text-xl tracking-wide text-white mb-4">Sensualité</h3>
+                        <p class="text-neutral-400 text-sm font-light tracking-wide leading-relaxed">
+                            Setiap formulasi aroma kami dirancang untuk memantik emosi terdalam. Menghadirkan sensasi
+                            kehangatan yang
+                            memikat siapa pun yang melintas di dekat Anda.
+                        </p>
+                    </div>
+                    <div
+                        class="mt-8 pt-6 border-t border-neutral-900/60 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#c5a880]">
+                        <span>Estetika Utama</span>
+                    </div>
+                </div>
+
+                <div class="glass p-8 md:p-10 rounded-2xl flex flex-col justify-between group hover:border-[#c5a880]/30 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div
+                            class="w-12 h-12 rounded-full bg-[#c5a880]/5 flex items-center justify-center border border-[#c5a880]/20 mb-8 group-hover:bg-[#c5a880] group-hover:text-neutral-950 transition-all duration-500">
+                            <i data-lucide="shield-check"
+                                class="w-5 h-5 text-[#c5a880] group-hover:text-neutral-950"></i>
+                        </div>
+                        <h3 class="font-sans text-xl tracking-wide text-white mb-4">Exclusivité</h3>
+                        <p class="text-neutral-400 text-sm font-light tracking-wide leading-relaxed">
+                            Diproduksi secara terbatas (*small-batch artisan*) menggunakan ekstraksi bahan alami paling
+                            murni yang
+                            diimpor dari Grasse, Prancis Selatan, ibukota wewangian dunia.
+                        </p>
+                    </div>
+                    <div
+                        class="mt-8 pt-6 border-t border-neutral-900/60 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#c5a880]">
+                        <span>Bahan Murni</span>
+                    </div>
+                </div>
+
+                <div class="glass p-8 md:p-10 rounded-2xl flex flex-col justify-between group hover:border-[#c5a880]/30 transition-all duration-500 hover:-translate-y-2 shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div
+                            class="w-12 h-12 rounded-full bg-[#c5a880]/5 flex items-center justify-center border border-[#c5a880]/20 mb-8 group-hover:bg-[#c5a880] group-hover:text-neutral-950 transition-all duration-500">
+                            <i data-lucide="moon" class="w-5 h-5 text-[#c5a880] group-hover:text-neutral-950"></i>
+                        </div>
+                        <h3 class="font-sans text-xl tracking-wide text-white mb-4">Mystère</h3>
+                        <p class="text-neutral-400 text-sm font-light tracking-wide leading-relaxed">
+                            Karakter aroma berlapis yang terus bermutasi seiring waktu. Menyisakan jejak wangi
+                            (*sillage*) yang
+                            misterius, membuat orang lain penasaran akan esensi Anda.
+                        </p>
+                    </div>
+                    <div
+                        class="mt-8 pt-6 border-t border-neutral-900/60 flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#c5a880]">
+                        <span>Jejak Abadi</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-20 glass-premium rounded-3xl p-8 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-8"
+                data-aos="fade-up">
+                <div class="max-w-xl text-center lg:text-left">
+                    <h3 class="font-sans text-2xl md:text-3xl text-white tracking-wide">"Aroma adalah puisi tak bersuara
+                        yang
+                        melukiskan jiwa seseorang."</h3>
+                    <p class="text-neutral-400 text-sm font-light mt-4 leading-relaxed">
+                        - Nizar Hakim, Founder Noire Parfum.
+                    </p>
+                </div>
+                <a href="#scent-finder"
+                    class="px-8 py-4 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold-gradient text-neutral-950 hover:shadow-gold-glow-lg transition-all duration-300">
+                    Mulai Konsultasi Aroma
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="collections" class="py-24 relative overflow-hidden bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16" data-aos="fade-up">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.4em] text-[#c5a880] font-sans">Koleksi Eksklusif</span>
+                    <h2 class="font-sans text-3xl md:text-4xl tracking-wide text-white mt-3">Signature Masterpieces</h2>
+                </div>
+
+                <div class="flex gap-4 mt-8 md:mt-0 border-b border-neutral-900">
+                    <button onclick="switchTab('opium')" id="tab-opium"
+                        class="tab-trigger pb-4 text-xs font-medium uppercase tracking-widest text-neutral-500 hover:text-white transition-all duration-300 tab-active">Noire
+                        Opium</button>
+                    <button onclick="switchTab('obscur')" id="tab-obscur"
+                        class="tab-trigger pb-4 text-xs font-medium uppercase tracking-widest text-neutral-500 hover:text-white transition-all duration-300">L'Obscur</button>
+                    <button onclick="switchTab('mystere')" id="tab-mystere"
+                        class="tab-trigger pb-4 text-xs font-medium uppercase tracking-widest text-neutral-500 hover:text-white transition-all duration-300">Mystère</button>
+                </div>
+            </div>
+
+            <div id="tab-content" class="min-h-[500px]">
+
+                <div id="content-opium" class="tab-pane grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    <div class="lg:col-span-5 flex justify-center" data-aos="zoom-in">
+                        <div
+                            class="relative group max-w-sm w-full aspect-square bg-radial-gradient from-neutral-900 to-transparent p-6 rounded-full flex items-center justify-center">
+                            <div
+                                class="absolute inset-0 rounded-full border border-[#c5a880]/5 group-hover:border-[#c5a880]/20 transition-colors duration-500">
+                            </div>
+                            <img src="./assets/images/noire_opium_bottle_1779387278467.png"
+                                alt="Noire Opium Perfume Bottle"
+                                class="h-[80%] max-w-[80%] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7" data-aos="fade-left">
+                        <span class="text-xs uppercase tracking-widest text-[#c5a880] font-sans">Sensual & Warm</span>
+                        <h3 class="font-sans text-3xl md:text-4xl text-white tracking-wide mt-2">Noire Opium</h3>
+                        <p class="text-neutral-400 text-sm font-light mt-6 leading-relaxed">
+                            Sebuah ode untuk kemewahan malam yang gelap dan liar. Karakter aroma yang memikat didominasi
+                            oleh
+                            kesegaran biji kopi hitam pilihan, berpadu harmonis dengan kelembutan kelopak vanila anggun
+                            dan aroma kayu
+                            patchouli eksotis yang sensual. Sangat cocok untuk acara makan malam romantis atau malam
+                            yang penuh
+                            energi.
+                        </p>
+
+                        <div class="grid grid-cols-3 gap-4 mt-8">
+                            <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">
+                                <p class="text-[10px] uppercase tracking-wider text-neutral-500">Top Note</p>
+                                <p class="text-xs text-white font-medium mt-1">Pear, Pink Pepper, Orange Blossom</p>
+                            </div>
+                            <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">
+                                <p class="text-[10px] uppercase tracking-wider text-neutral-500">Heart Note</p>
+                                <p class="text-xs text-white font-medium mt-1">Coffee, Jasmine, Bitter Almond</p>
+                            </div>
+                            <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">
+                                <p class="text-[10px] uppercase tracking-wider text-neutral-500">Base Note</p>
+                                <p class="text-xs text-white font-medium mt-1">Vanilla, Patchouli, Cedarwood</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-center gap-6 mt-10 pt-8 border-t border-neutral-900">
+                            <div>
+                                <p class="text-xs text-neutral-500 uppercase tracking-widest">Harga Eksklusif</p>
+                                <p class="text-2xl text-white font-serif tracking-wider mt-1">Rp 1.850.000 <span
+                                        class="text-xs text-neutral-500 font-sans tracking-normal">/ 100ml</span></p>
+                            </div>
+
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center gap-3 lg:gap-18 w-full sm:w-auto mt-4 sm:mt-0">
+                                <button onclick="buyNow('opium')"
+                                    class="w-full sm:w-auto text-center px-8 py-4 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold-gradient text-neutral-950 hover:shadow-gold-glow-lg transition-all duration-300 whitespace-nowrap cursor-pointer">
+                                    Pesan Sekarang
+                                </button>
+
+                                <button onclick="addToCart('opium')"
+                                    class="flex items-center justify-center gap-4 w-full sm:w-auto px-6 py-4 rounded-full border border-neutral-800 bg-neutral-900/50 hover:border-gold-500/50 hover:bg-neutral-900 text-neutral-300 hover:text-gold-400 text-xs font-semibold tracking-widest uppercase transition-all duration-300 backdrop-blur-md whitespace-nowrap group/cart">
+                                    <i data-lucide="shopping-cart"
+                                        class="w-3.5 h-3.5 text-neutral-500 group-hover:text-gold-400 transition-colors"></i>
+                                    Keranjang
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-obscur"
+                    class="tab-pane grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center hidden">
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div
+                            class="relative group max-w-sm w-full aspect-square bg-radial-gradient from-neutral-900 to-transparent p-6 rounded-full flex items-center justify-center">
+                            <div
+                                class="absolute inset-0 rounded-full border border-[#c5a880]/5 group-hover:border-[#c5a880]/20 transition-colors duration-500">
+                            </div>
+                            <img src="./assets/images/lobscur_bottle_1779387332654.png" alt="L'Obscur Perfume Bottle"
+                                class="h-[80%] max-w-[80%] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <span class="text-xs uppercase tracking-widest text-[#c5a880] font-sans">Mysterious &
+                            Woody</span>
+                        <h3 class="font-sans text-3xl md:text-4xl text-white tracking-wide mt-2">L'Obscur</h3>
+                        <p class="text-neutral-400 text-sm font-light mt-6 leading-relaxed">
+                            Membangkitkan keheningan dan keagungan hutan pinus di malam berkabut. Karakter aroma
+                            aromatik hangat
+                            diawali dengan rempah kapulaga eksotis yang perlahan berbaur dengan ketegasan wangi kayu
+                            cedarwood merah
+                            dan dibalut sentuhan kelembutan wangi kulit (*leather*) premium serta amber hangat. Aroma
+                            bagi mereka yang
+                            tenang, kuat, dan penuh rahasia.
+                        </p>
+
+                        <div class="grid grid-cols-3 gap-4 mt-8">
+                            <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">
+                                <p class="text-[10px] uppercase tracking-wider text-neutral-500">Top Note</p>
+                                <p class="text-xs text-white font-medium mt-1">Cardamom, Nutmeg, Saffron</p>
+                            </div>
+                            <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">
+                                <p class="text-[10px] uppercase tracking-wider text-neutral-500">Heart Note</p>
+                                <p class="text-xs text-white font-medium mt-1">Cedarwood, Leather, Vetiver</p>
+                            </div>
+                            <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">
+                                <p class="text-[10px] uppercase tracking-wider text-neutral-500">Base Note</p>
+                                <p class="text-xs text-white font-medium mt-1">Amber, Sandalwood, Tonka Bean</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-center gap-6 mt-10 pt-8 border-t border-neutral-900">
+                            <div>
+                                <p class="text-xs text-neutral-500 uppercase tracking-widest">Harga Eksklusif</p>
+                                <p class="text-2xl text-white font-serif tracking-wider mt-1">Rp 1.950.000 <span
+                                        class="text-xs text-neutral-500 font-sans tracking-normal">/ 100ml</span></p>
+                            </div>
+
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center gap-3 lg:gap-18 w-full sm:w-auto mt-4 sm:mt-0">
+                                <button onclick="buyNow('obscur')"
+                                    class="w-full sm:w-auto text-center px-8 py-4 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold-gradient text-neutral-950 hover:shadow-gold-glow-lg transition-all duration-300 whitespace-nowrap cursor-pointer">
+                                    Pesan Sekarang
+                                </button>
+
+                                <button onclick="addToCart('obscur')"
+                                    class="flex items-center justify-center gap-4 w-full sm:w-auto px-6 py-4 rounded-full border border-neutral-800 bg-neutral-900/50 hover:border-gold-500/50 hover:bg-neutral-900 text-neutral-300 hover:text-gold-400 text-xs font-semibold tracking-widest uppercase transition-all duration-300 backdrop-blur-md whitespace-nowrap group/cart">
+                                    <i data-lucide="shopping-cart"
+                                        class="w-3.5 h-3.5 text-neutral-500 group-hover:text-gold-400 transition-colors"></i>
+                                    Keranjang
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-mystere"
+                    class="tab-pane grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center hidden">
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div
+                            class="relative group max-w-sm w-full aspect-square bg-radial-gradient from-neutral-900 to-transparent p-6 rounded-full flex items-center justify-center">
+                            <div
+                                class="absolute inset-0 rounded-full border border-[#c5a880]/5 group-hover:border-[#c5a880]/20 transition-colors duration-500">
+                            </div>
+                            <img src="./assets/images/mystere_bottle_1779387500072.png" alt="Mystère Perfume Bottle"
+                                class="h-[80%] max-w-[80%] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7">
+                        <span class="text-xs uppercase tracking-widest text-[#c5a880] font-sans">Fresh &
+                            Sophisticated</span>
+                        <h3 class="font-sans text-3xl md:text-4xl text-white tracking-wide mt-2">Mystère</h3>
+                        <p class="text-neutral-400 text-sm font-light mt-6 leading-relaxed">
+                            Keindahan taman mawar rahasia di bawah siraman cahaya bulan purnama. Perpaduan mawar
+                            Damaskus yang mekar
+                            di tengah kelembutan kelopak melati malam (*Midnight Jasmine*) dan sensasi buah blackcurrant
+                            segar.
+                            Ditutup dengan harmoni aroma kayu oud berharga dan sentuhan manis praline mewah.
+                            Representasi keanggunan
+                            berkelas tinggi yang menawan dan penuh teka-teki.
+                        </p>
+
+                        <div class="grid grid-cols-3 gap-4 mt-8">
+                            <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">
+                                <p class="text-[10px] uppercase tracking-wider text-neutral-500">Top Note</p>
+                                <p class="text-xs text-white font-medium mt-1">Blackcurrant, Pink Pepper, Bergamot</p>
+                            </div>
+                            <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">
+                                <p class="text-[10px] uppercase tracking-wider text-neutral-500">Heart Note</p>
+                                <p class="text-xs text-white font-medium mt-1">Damask Rose, Midnight Jasmine</p>
+                            </div>
+                            <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">
+                                <p class="text-[10px] uppercase tracking-wider text-neutral-500">Base Note</p>
+                                <p class="text-xs text-white font-medium mt-1">Patchouli, White Musk, Oud, Praline</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex flex-col sm:flex-row sm:items-center gap-6 mt-10 pt-8 border-t border-neutral-900">
+                            <div>
+                                <p class="text-xs text-neutral-500 uppercase tracking-widest">Harga Eksklusif</p>
+                                <p class="text-2xl text-white font-serif tracking-wider mt-1">Rp 1.900.000 <span
+                                        class="text-xs text-neutral-500 font-sans tracking-normal">/ 100ml</span></p>
+                            </div>
+
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center gap-3 lg:gap-18 w-full sm:w-auto mt-4 sm:mt-0">
+                                <button onclick="buyNow('mystere')"
+                                    class="w-full sm:w-auto text-center px-8 py-4 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold-gradient text-neutral-950 hover:shadow-gold-glow-lg transition-all duration-300 whitespace-nowrap cursor-pointer">
+                                    Pesan Sekarang
+                                </button>
+
+                                <button onclick="addToCart('mystere')"
+                                    class="flex items-center justify-center gap-4 w-full sm:w-auto px-6 py-4 rounded-full border border-neutral-800 bg-neutral-900/50 hover:border-gold-500/50 hover:bg-neutral-900 text-neutral-300 hover:text-gold-400 text-xs font-semibold tracking-widest uppercase transition-all duration-300 backdrop-blur-md whitespace-nowrap group/cart">
+                                    <i data-lucide="shopping-cart"
+                                        class="w-3.5 h-3.5 text-neutral-500 group-hover:text-gold-400 transition-colors"></i>
+                                    Keranjang
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="scent-finder" class="py-24 relative overflow-hidden bg-[#070707]">
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#c5a880]/5 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 md:px-12 relative z-10">
+
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-xs uppercase tracking-[0.4em] text-[#c5a880] font-sans">Temukan Kepribadian
+                    Anda</span>
+                <h2 class="font-sans text-3xl md:text-4xl tracking-wide text-white mt-3">Interactive Scent Finder</h2>
+                <p class="text-neutral-400 text-sm font-light mt-4">Jawab 3 pertanyaan sederhana bergaya mewah ini untuk
+                    temukan signature wewangian Noire yang paling menyatu sempurna dengan energi dan aura Anda.</p>
+                <div class="w-12 h-[1px] bg-[#c5a880] mx-auto mt-6"></div>
+            </div>
+
+            <div class="glass-premium rounded-3xl p-8 md:p-12 relative overflow-hidden min-h-[420px] flex flex-col justify-between shadow-2xl border border-[#c5a880]/20"
+                data-aos="fade-up">
+
+                <div class="absolute top-0 left-0 w-full h-[3px] bg-neutral-900">
+                    <div id="quiz-progress" class="h-full bg-gold-gradient transition-all duration-500"
+                        style="width: 33.33%;">
+                    </div>
+                </div>
+
+                <div id="quiz-step-1" class="quiz-step fade-slide-in">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-xs uppercase tracking-widest text-[#c5a880] font-semibold">Pertanyaan 1 dari
+                            3</span>
+                        <span class="text-xs text-neutral-500 font-medium">Suasana & Vibes</span>
+                    </div>
+                    <h3 class="font-sans text-xl md:text-2xl text-white tracking-wide mb-8">Pilih suasana malam atau
+                        lingkungan
+                        yang paling membangkitkan kebahagiaan sejati dalam diri Anda:</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                        <button onclick="selectOption(1, 'A')"
+                            class="glass p-6 rounded-xl text-left border border-neutral-800 hover:border-[#c5a880] focus:outline-none transition-all duration-300 hover:scale-[1.02] group">
+                            <span
+                                class="inline-flex w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 group-hover:border-[#c5a880]/40 items-center justify-center text-xs font-semibold text-neutral-400 group-hover:text-[#c5a880] mb-4">A</span>
+                            <p class="text-sm font-medium text-white group-hover:text-[#c5a880] transition-colors">Malam
+                                Lounge Mewah
+                            </p>
+                            <p class="text-xs text-neutral-400 font-light mt-2 leading-relaxed">Malam intim di bar mewah
+                                bernuansa
+                                jazz dengan lilin aromatik hangat and alunan musik lembut.</p>
+                        </button>
+
+                        <button onclick="selectOption(1, 'B')"
+                            class="glass p-6 rounded-xl text-left border border-neutral-800 hover:border-[#c5a880] focus:outline-none transition-all duration-300 hover:scale-[1.02] group">
+                            <span
+                                class="inline-flex w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 group-hover:border-[#c5a880]/40 items-center justify-center text-xs font-semibold text-neutral-400 group-hover:text-[#c5a880] mb-4">B</span>
+                            <p class="text-sm font-medium text-white group-hover:text-[#c5a880] transition-colors">Hutan
+                                Pinus
+                                Berkabut</p>
+                            <p class="text-xs text-neutral-400 font-light mt-2 leading-relaxed">Berjalan santai di
+                                tengah keheningan
+                                hutan pinus pagi hari berudara sejuk dan tanah yang basah.</p>
+                        </button>
+
+                        <button onclick="selectOption(1, 'C')"
+                            class="glass p-6 rounded-xl text-left border border-neutral-800 hover:border-[#c5a880] focus:outline-none transition-all duration-300 hover:scale-[1.02] group">
+                            <span
+                                class="inline-flex w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 group-hover:border-[#c5a880]/40 items-center justify-center text-xs font-semibold text-neutral-400 group-hover:text-[#c5a880] mb-4">C</span>
+                            <p class="text-sm font-medium text-white group-hover:text-[#c5a880] transition-colors">Taman
+                                Rahasia Lunar
+                            </p>
+                            <p class="text-xs text-neutral-400 font-light mt-2 leading-relaxed">Menghirup wangi bunga
+                                mekar malam hari
+                                di dalam taman marmer rahasia di bawah pancaran rembulan.</p>
+                        </button>
+
+                    </div>
+                </div>
+
+                <div id="quiz-step-2" class="quiz-step hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-xs uppercase tracking-widest text-[#c5a880] font-semibold">Pertanyaan 2 dari
+                            3</span>
+                        <span class="text-xs text-neutral-500 font-medium">Karakter Diri</span>
+                    </div>
+                    <h3 class="font-sans text-xl md:text-2xl text-white tracking-wide mb-8">Karakter utama mana di bawah
+                        ini
+                        yang paling mewakili kepribadian otentik Anda?</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                        <button onclick="selectOption(2, 'A')"
+                            class="glass p-6 rounded-xl text-left border border-neutral-800 hover:border-[#c5a880] focus:outline-none transition-all duration-300 hover:scale-[1.02] group">
+                            <span
+                                class="inline-flex w-8 h-8 rounded-full bg-neutral-950 border border-neutral-850 group-hover:border-[#c5a880]/40 items-center justify-center text-xs font-semibold text-neutral-400 group-hover:text-[#c5a880] mb-4">A</span>
+                            <p class="text-sm font-medium text-white group-hover:text-[#c5a880] transition-colors">
+                                Berani & Menggoda
+                            </p>
+                            <p class="text-xs text-neutral-400 font-light mt-2 leading-relaxed">Saya ekspresif, hangat,
+                                memikat,
+                                menyukai tantangan baru, dan gemar menjadi sorotan utama.</p>
+                        </button>
+
+                        <button onclick="selectOption(2, 'B')"
+                            class="glass p-6 rounded-xl text-left border border-neutral-800 hover:border-[#c5a880] focus:outline-none transition-all duration-300 hover:scale-[1.02] group">
+                            <span
+                                class="inline-flex w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 group-hover:border-[#c5a880]/40 items-center justify-center text-xs font-semibold text-neutral-400 group-hover:text-[#c5a880] mb-4">B</span>
+                            <p class="text-sm font-medium text-white group-hover:text-[#c5a880] transition-colors">
+                                Misterius &
+                                Berwibawa</p>
+                            <p class="text-xs text-neutral-400 font-light mt-2 leading-relaxed">Saya tenang, berwibawa,
+                                lebih senang
+                                mengamati situasi dengan mendalam, dan sulit ditebak.</p>
+                        </button>
+
+                        <button onclick="selectOption(2, 'C')"
+                            class="glass p-6 rounded-xl text-left border border-neutral-800 hover:border-[#c5a880] focus:outline-none transition-all duration-300 hover:scale-[1.02] group">
+                            <span
+                                class="inline-flex w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 group-hover:border-[#c5a880]/40 items-center justify-center text-xs font-semibold text-neutral-400 group-hover:text-[#c5a880] mb-4">C</span>
+                            <p class="text-sm font-medium text-white group-hover:text-[#c5a880] transition-colors">
+                                Elegan & Puitis</p>
+                            <p class="text-xs text-neutral-400 font-light mt-2 leading-relaxed">Saya menyukai keindahan
+                                klasik, seni
+                                sastra, bergaya modern berkelas, dan menghargai kesederhanaan.</p>
+                        </button>
+
+                    </div>
+                </div>
+
+                <div id="quiz-step-3" class="quiz-step hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="text-xs uppercase tracking-widest text-[#c5a880] font-semibold">Pertanyaan 3 dari
+                            3</span>
+                        <span class="text-xs text-neutral-500 font-medium">Gaya Pakaian</span>
+                    </div>
+                    <h3 class="font-sans text-xl md:text-2xl text-white tracking-wide mb-8">Pilih gaya busana eksklusif
+                        yang
+                        paling membuat Anda merasa percaya diri secara penuh:</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                        <button onclick="selectOption(3, 'A')"
+                            class="glass p-6 rounded-xl text-left border border-neutral-800 hover:border-[#c5a880] focus:outline-none transition-all duration-300 hover:scale-[1.02] group">
+                            <span
+                                class="inline-flex w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 group-hover:border-[#c5a880]/40 items-center justify-center text-xs font-semibold text-neutral-400 group-hover:text-[#c5a880] mb-4">A</span>
+                            <p class="text-sm font-medium text-white group-hover:text-[#c5a880] transition-colors">
+                                Luxury Velvet /
+                                Silk</p>
+                            <p class="text-xs text-neutral-400 font-light mt-2 leading-relaxed">Pakaian beludru hitam
+                                pekat yang
+                                mewah, gaun sutra mengalir anggun, atau setelan jas satin mengkilap.</p>
+                        </button>
+
+                        <button onclick="selectOption(3, 'B')"
+                            class="glass p-6 rounded-xl text-left border border-neutral-800 hover:border-[#c5a880] focus:outline-none transition-all duration-300 hover:scale-[1.02] group">
+                            <span
+                                class="inline-flex w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 group-hover:border-[#c5a880]/40 items-center justify-center text-xs font-semibold text-neutral-400 group-hover:text-[#c5a880] mb-4">B</span>
+                            <p class="text-sm font-medium text-white group-hover:text-[#c5a880] transition-colors">
+                                Structured Leather
+                                / Tweed</p>
+                            <p class="text-xs text-neutral-400 font-light mt-2 leading-relaxed">Jaket kulit bertekstur,
+                                blazer wol
+                                (*tweed*) terstruktur premium, serta jam tangan mekanis yang kokoh.</p>
+                        </button>
+
+                        <button onclick="selectOption(3, 'C')"
+                            class="glass p-6 rounded-xl text-left border border-neutral-800 hover:border-[#c5a880] focus:outline-none transition-all duration-300 hover:scale-[1.02] group">
+                            <span
+                                class="inline-flex w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 group-hover:border-[#c5a880]/40 items-center justify-center text-xs font-semibold text-neutral-400 group-hover:text-[#c5a880] mb-4">C</span>
+                            <p class="text-sm font-medium text-white group-hover:text-[#c5a880] transition-colors">Pure
+                                Linen / Satin
+                            </p>
+                            <p class="text-xs text-neutral-400 font-light mt-2 leading-relaxed">Kemeja linen putih
+                                bersih yang rapi,
+                                gaun satin berwarna pastel lembut, atau pakaian rajut mewah yang nyaman.</p>
+                        </button>
+
+                    </div>
+                </div>
+
+                <div id="quiz-loading" class="quiz-step hidden flex flex-col justify-center items-center py-16">
+                    <div class="relative w-20 h-20 mb-6">
+                        <div class="absolute inset-0 rounded-full border-4 border-neutral-900"></div>
+                        <div
+                            class="absolute inset-0 rounded-full border-4 border-[#c5a880] border-t-transparent animate-spin">
+                        </div>
+                    </div>
+                    <p class="text-sm font-medium uppercase tracking-[0.2em] text-[#c5a880]">Menganalisis Aura Anda...
+                    </p>
+                    <p class="text-xs text-neutral-500 font-light mt-2">Menyandingkan elemen wewangian spiritual Prancis
+                        dengan
+                        kepribadian Anda.</p>
+                </div>
+
+                <div id="quiz-result" class="quiz-step hidden fade-slide-in">
+                    <div class="text-center mb-6">
+                        <span class="text-xs uppercase tracking-[0.3em] text-[#c5a880] font-sans">Hasil Rekomendasi
+                            Anda</span>
+                        <h3 class="font-sans text-2xl md:text-3xl text-white tracking-wide mt-2">The Soul Mate Scent
+                        </h3>
+                    </div>
+
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-neutral-950/60 p-6 rounded-2xl border border-neutral-900 shadow-3xl">
+                        <div class="md:col-span-4 flex justify-center">
+                            <img id="result-perfume-img" src="" alt="Recommended Perfume"
+                                class="max-h-[160px] object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)]">
+                        </div>
+                        <div class="md:col-span-8 text-left">
+                            <span id="result-vibe-badge"
+                                class="text-[10px] font-semibold tracking-widest uppercase bg-[#c5a880]/10 text-[#c5a880] border border-[#c5a880]/20 px-3 py-1 rounded-full">Sensual
+                                & Warm</span>
+                            <h4 id="result-perfume-name" class="font-sans text-2xl text-white tracking-wide mt-3">Noire
+                                Opium</h4>
+                            <p id="result-perfume-desc" class="text-neutral-400 text-xs font-sans mt-3 leading-relaxed">
+                                Lorem ipsum
+                                dolor sit amet, consectetur adipiscing elit. Aliquam nec efficitur turpis. In congue
+                                dolor quis ex.</p>
+
+                            <div class="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-neutral-900/60">
+                                <div>
+                                    <p class="text-[9px] uppercase tracking-wider text-neutral-500">Top Note</p>
+                                    <p id="result-top-note" class="text-[10px] text-white font-medium truncate">Coffee
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] uppercase tracking-wider text-neutral-500">Heart Note</p>
+                                    <p id="result-heart-note" class="text-[10px] text-white font-medium truncate">
+                                        Vanilla</p>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] uppercase tracking-wider text-neutral-500">Base Note</p>
+                                    <p id="result-base-note" class="text-[10px] text-white font-medium truncate">
+                                        Patchouli</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                        <a id="result-cta-order" href="#contact"
+                            class="inline-flex items-center justify-center px-8 py-3.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold-gradient text-neutral-950 hover:shadow-gold-glow-lg transition-all duration-300">
+                            Pesan Aroma Ini
+                        </a>
+                        <button onclick="resetQuiz()"
+                            class="inline-flex items-center justify-center px-8 py-3.5 rounded-full text-xs font-semibold tracking-widest uppercase bg-transparent border border-neutral-800 hover:border-[#c5a880] text-neutral-400 hover:text-white transition-all duration-300">
+                            Ulangi Kuis
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-24 relative overflow-hidden bg-[#050505]">
+        <div class="absolute bottom-1/4 left-10 w-64 h-64 bg-[#c5a880]/3 rounded-full blur-[100px] pointer-events-none">
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 md:px-12 relative z-10">
+
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-xs uppercase tracking-[0.4em] text-[#c5a880] font-sans">Ulasan Pelanggan</span>
+                <h2 class="font-sans text-3xl md:text-4xl tracking-wide text-white mt-3">Suara Jiwa yang Memilih</h2>
+                <div class="w-12 h-[1px] bg-[#c5a880] mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start" data-aos="fade-up">
+                <div
+                    class="lg:col-span-5 bg-neutral-950/80 border border-neutral-900 rounded-3xl p-6 md:p-8 sticky top-28 shadow-2xl">
+                    <h3 class="font-sans text-lg text-white tracking-widest uppercase mb-4">Tulis Ulasan</h3>
+                    <p class="text-neutral-500 text-xs font-light mb-6">Bagikan sensasi kemewahan dan keanggunan aroma
+                        Noiré yang
+                        Anda rasakan.</p>
+
+                    <form id="review-form" onsubmit="handleReviewSubmit(event)" class="space-y-5">
+                        <div>
+                            <label
+                                class="block text-[10px] uppercase tracking-widest text-neutral-400 mb-2 font-medium">Nama
+                                Anda</label>
+                            <input type="text" id="review-name" required placeholder="Contoh: Nizar"
+                                class="w-full bg-neutral-900/60 border border-neutral-800 hover:border-[#c5a880]/30 focus:border-[#c5a880] px-4 py-3 rounded-xl text-xs text-white focus:outline-none transition-all duration-300">
+                        </div>
+
+                        <!-- Pilihan Varian Parfum -->
+                        <div>
+                            <label
+                                class="block text-[10px] uppercase tracking-widest text-neutral-400 mb-2 font-medium">Varian
+                                Parfum</label>
+                            <div class="relative">
+                                <select id="review-variant" required
+                                    class="w-full bg-neutral-900/60 border border-neutral-800 hover:border-[#c5a880]/30 focus:border-[#c5a880] px-4 py-3 rounded-xl text-xs text-neutral-400 focus:text-white focus:outline-none transition-all duration-300 appearance-none">
+                                    <option value="" disabled selected class="bg-neutral-950">Pilih Varian yang Dibeli
+                                    </option>
+                                    <option value="Noiré Opium" class="bg-neutral-950">Noiré Opium</option>
+                                    <option value="L'Obscur" class="bg-neutral-950">L'Obscur</option>
+                                    <option value="Mystère" class="bg-neutral-950">Mystère</option>
+                                </select>
+                                <div
+                                    class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-500">
+                                    <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MULTI-CRITERIA RATING SYSTEM GRID -->
+                        <div class="space-y-3.5 pt-2 border-t border-neutral-900">
+                            <!-- Rating Aroma -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label
+                                        class="block text-[10px] uppercase tracking-widest text-neutral-400 font-medium">Rating
+                                        Aroma</label>
+                                    <span id="star-rating-text-aroma"
+                                        class="text-[9px] font-semibold tracking-widest text-[#c5a880] uppercase">Pilih
+                                        Rating</span>
+                                </div>
+                                <div data-rating-category="aroma"
+                                    class="interactive-stars-group flex items-center gap-1 cursor-pointer"></div>
+                            </div>
+
+                            <!-- Rating Efektifitas -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label
+                                        class="block text-[10px] uppercase tracking-widest text-neutral-400 font-medium">Efektifitas
+                                        Produk</label>
+                                    <span id="star-rating-text-efektifitas"
+                                        class="text-[9px] font-semibold tracking-widest text-[#c5a880] uppercase">Pilih
+                                        Rating</span>
+                                </div>
+                                <div data-rating-category="efektifitas"
+                                    class="interactive-stars-group flex items-center gap-1 cursor-pointer"></div>
+                            </div>
+
+                            <!-- Rating Shipping Order -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label
+                                        class="block text-[10px] uppercase tracking-widest text-neutral-400 font-medium">Shipping
+                                        &
+                                        Kecepatan</label>
+                                    <span id="star-rating-text-shipping"
+                                        class="text-[9px] font-semibold tracking-widest text-[#c5a880] uppercase">Pilih
+                                        Rating</span>
+                                </div>
+                                <div data-rating-category="shipping"
+                                    class="interactive-stars-group flex items-center gap-1 cursor-pointer"></div>
+                            </div>
+
+                            <!-- Rating Ketahanan -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label
+                                        class="block text-[10px] uppercase tracking-widest text-neutral-400 font-medium">Ketahanan
+                                        Aroma (Longevity)</label>
+                                    <span id="star-rating-text-ketahanan"
+                                        class="text-[9px] font-semibold tracking-widest text-[#c5a880] uppercase">Pilih
+                                        Rating</span>
+                                </div>
+                                <div data-rating-category="ketahanan"
+                                    class="interactive-stars-group flex items-center gap-1 cursor-pointer"></div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <label
+                                class="block text-[10px] uppercase tracking-widest text-neutral-400 mb-2 font-medium">Isi
+                                Ulasan</label>
+                            <textarea id="review-comment" required rows="4"
+                                placeholder="Ceritakan detail keharuman, sillage, atau ketahanan parfum..."
+                                class="w-full bg-neutral-900/60 border border-neutral-800 hover:border-[#c5a880]/30 focus:border-[#c5a880] px-4 py-3 rounded-xl text-xs text-white focus:outline-none transition-all duration-300 resize-none"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full py-3 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold-gradient text-neutral-950 hover:shadow-gold-glow transition-all duration-300 cursor-pointer">
+                            Kirim Ulasan Anda
+                        </button>
+                    </form>
+                </div>
+
+                <!-- RIGHT SIDE: DASHBOARD SUMMARY AND FEED LIST -->
+                <div class="lg:col-span-7 space-y-6">
+                    <!-- RINGKASAN RATING KESELURUHAN (Dinamis via JS) -->
+                    <div id="overall-rating-summary"></div>
+
+                    <!-- FEED LIST DAFTAR ULASAN -->
+                    <div class="space-y-6 max-h-[500px] overflow-y-auto pr-2" id="reviews-list-container">
+                        <!-- Diisi Dinamis Lewat JS -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 relative overflow-hidden bg-[#070707]">
+        <div
+            class="absolute top-1/3 right-10 w-[400px] h-[400px] bg-[#c5a880]/3 rounded-full blur-[100px] pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+
+                <div class="lg:col-span-7" data-aos="fade-right">
+                    <span class="text-xs uppercase tracking-[0.4em] text-[#c5a880] font-semibold">Konsultasi
+                        Eksklusif</span>
+                    <h2 class="font-sans text-3xl md:text-4xl tracking-wide text-white mt-3 mb-6">Mulai Perjalanan Aroma
+                        Anda</h2>
+                    <p class="text-neutral-400 text-sm font-light leading-relaxed mb-10 max-w-lg">Apakah Anda ragu
+                        memilih, ingin
+                        memesan sebagai hadiah korporat mewah, atau membutuhkan konsultasi personal? Kirim pesan kepada
+                        tim
+                        *fragrance advisor* kami.</p>
+
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-6">
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="relative">
+                                <input type="text" id="form-name" required placeholder=" "
+                                    class="floating-input w-full bg-neutral-950/80 border border-neutral-800 hover:border-[#c5a880]/30 focus:border-[#c5a880] px-4 py-4 rounded-xl text-sm text-white focus:outline-none transition-all duration-300">
+                                <label for="form-name"
+                                    class="floating-label absolute left-4 top-[17px] text-xs text-neutral-500 uppercase tracking-widest transition-all duration-300 pointer-events-none">Nama
+                                    Lengkap</label>
+                            </div>
+                            <div class="relative">
+                                <input type="email" id="form-email" required placeholder=" "
+                                    class="floating-input w-full bg-neutral-950/80 border border-neutral-800 hover:border-[#c5a880]/30 focus:border-[#c5a880] px-4 py-4 rounded-xl text-sm text-white focus:outline-none transition-all duration-300">
+                                <label for="form-email"
+                                    class="floating-label absolute left-4 top-[17px] text-xs text-neutral-500 uppercase tracking-widest transition-all duration-300 pointer-events-none">Alamat
+                                    Email</label>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <select id="form-preference"
+                                class="w-full bg-neutral-950/80 border border-neutral-800 hover:border-[#c5a880]/30 focus:border-[#c5a880] px-4 py-4 rounded-xl text-sm text-neutral-400 focus:text-white focus:outline-none transition-all duration-300 appearance-none">
+                                <option value="" disabled selected class="bg-neutral-950">Aroma yang Ingin Ditanyakan
+                                </option>
+                                <option value="opium" class="bg-neutral-950">Noire Opium</option>
+                                <option value="obscur" class="bg-neutral-950">L'Obscur</option>
+                                <option value="mystere" class="bg-neutral-950">Mystère</option>
+                                <option value="other" class="bg-neutral-950">Lainnya / Butuh Rekomendasi</option>
+                            </select>
+                            <div
+                                class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-neutral-500">
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <textarea id="form-message" required rows="5" placeholder=" "
+                                class="floating-input w-full bg-neutral-950/80 border border-neutral-800 hover:border-[#c5a880]/30 focus:border-[#c5a880] px-4 py-4 rounded-xl text-sm text-white focus:outline-none transition-all duration-300"></textarea>
+                            <label for="form-message"
+                                class="floating-label absolute left-4 top-[17px] text-xs text-neutral-500 uppercase tracking-widest transition-all duration-300 pointer-events-none">Pesan
+                                Anda</label>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full py-4 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold-gradient text-neutral-950 hover:shadow-gold-glow-lg transition-all duration-300">
+                            Kirim Konsultasi
+                        </button>
+
+                        <div id="contact-success"
+                            class="hidden p-4 rounded-xl bg-[#c5a880]/10 border border-[#c5a880]/30 text-center fade-slide-in">
+                            <p class="text-xs uppercase tracking-widest text-[#c5a880] font-bold">Pesan Berhasil
+                                Terkirim</p>
+                            <p class="text-xs text-neutral-400 font-light mt-1.5">Terima kasih atas pesan Anda.
+                                Fragrance advisor kami
+                                akan menghubungi Anda kembali dalam waktu maksimal 24 jam melalui WhatsApp/Email.</p>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="lg:col-span-5" data-aos="fade-left">
+                    <span class="text-xs uppercase tracking-[0.4em] text-[#c5a880] font-semibold">Tanya Jawab</span>
+                    <h2 class="font-sans text-3xl md:text-4xl tracking-wide text-white mt-3 mb-10">Pertanyaan Umum</h2>
+
+                    <div class="space-y-4">
+
+                        <div class="border-b border-neutral-900 pb-4">
+                            <button onclick="toggleFaq(1)"
+                                class="w-full flex justify-between items-center text-left py-2 focus:outline-none group">
+                                <span
+                                    class="text-xs uppercase tracking-widest text-neutral-200 group-hover:text-[#c5a880] transition-colors font-medium">Berapa
+                                    lama ketahanan aroma Noire Parfum?</span>
+                                <i id="faq-icon-1" data-lucide="plus"
+                                    class="w-4 h-4 text-neutral-500 group-hover:text-[#c5a880] transition-transform duration-300"></i>
+                            </button>
+                            <div id="faq-answer-1"
+                                class="hidden mt-3 max-h-0 overflow-hidden transition-all duration-500">
+                                <p class="text-neutral-400 text-xs font-light tracking-wide leading-relaxed">
+                                    Semua koleksi wewangian Noire Parfum diformulasikan sebagai *Extrait de Parfum* yang
+                                    memiliki
+                                    konsentrasi minyak wewangian murni tertinggi. Daya tahan aroma kami berkisar antara
+                                    12 hingga 48 jam,
+                                    tergantung pada jenis aroma, jenis kulit, and aktivitas Anda.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-neutral-900 pb-4">
+                            <button onclick="toggleFaq(2)"
+                                class="w-full flex justify-between items-center text-left py-2 focus:outline-none group">
+                                <span
+                                    class="text-xs uppercase tracking-widest text-neutral-200 group-hover:text-[#c5a880] transition-colors font-medium">Apakah
+                                    Noire Parfum aman untuk kulit sensitif?</span>
+                                <i id="faq-icon-2" data-lucide="plus"
+                                    class="w-4 h-4 text-neutral-500 group-hover:text-[#c5a880] transition-transform duration-300"></i>
+                            </button>
+                            <div id="faq-answer-2"
+                                class="hidden mt-3 max-h-0 overflow-hidden transition-all duration-500">
+                                <p class="text-neutral-400 text-xs font-light tracking-wide leading-relaxed">
+                                    Ya, produk kami menggunakan basis alkohol organik berkualitas kosmetik yang
+                                    hipoalergenik. Formulasi
+                                    kami telah bersertifikat dermatologis, bebas dari paraben, ftalat, serta pewarna
+                                    buatan beracun
+                                    sehingga aman untuk kulit sensitif.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-neutral-900 pb-4">
+                            <button onclick="toggleFaq(3)"
+                                class="w-full flex justify-between items-center text-left py-2 focus:outline-none group">
+                                <span
+                                    class="text-xs uppercase tracking-widest text-neutral-200 group-hover:text-[#c5a880] transition-colors font-medium">Apakah
+                                    tersedia pengiriman ke luar kota & garansi?</span>
+                                <i id="faq-icon-3" data-lucide="plus"
+                                    class="w-4 h-4 text-neutral-500 group-hover:text-[#c5a880] transition-transform duration-300"></i>
+                            </button>
+                            <div id="faq-answer-3"
+                                class="hidden mt-3 max-h-0 overflow-hidden transition-all duration-500">
+                                <p class="text-neutral-400 text-xs font-light tracking-wide leading-relaxed">
+                                    Kami melayani pengiriman bergaransi penuh ke seluruh wilayah Indonesia. Setiap
+                                    pembelian disertai
+                                    kotak kayu eksklusif berlapis busa pengaman. Jika botol Anda mengalami kerusakan
+                                    atau pecah saat
+                                    pengiriman, kami akan menggantinya secara gratis 100%.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-[#050505] border-t border-neutral-900/60 pt-20 pb-8 text-neutral-400 relative overflow-hidden">
+        <div
+            class="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#c5a880]/3 rounded-full blur-[80px] pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-[200px] h-[200px] bg-[#a38053]/2 rounded-full blur-[80px] pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-12 z-10 relative">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-12 pb-16 border-b border-neutral-900">
+
+                <div class="md:col-span-4 flex flex-col gap-6">
+                    <a href="#" class="flex items-center gap-3">
+                        <span
+                            class="font-sans text-2xl tracking-[0.2em] font-medium text-white text-gold-gradient">Noiré</span>
+                    </a>
+                    <p class="text-xs font-light tracking-wide leading-relaxed max-w-sm">
+                        Menghadirkan esensi kemewahan abadi lewat gabungan tradisi wewangian Prancis dan bahan alam
+                        berkualitas
+                        terbaik.
+                    </p>
+                </div>
+
+                <div class="md:col-span-2">
+                    <p
+                        class="text-xs font-semibold text-white uppercase tracking-widest mb-6 border-b border-neutral-900 pb-2">
+                        Info Utama</p>
+                    <ul class="space-y-4 text-xs font-light">
+                        <li>
+                            <a href="#contact" onclick="openFaqAndScroll(event)"
+                                class="group flex items-center gap-2 hover:text-white transition-colors duration-300">
+                                <span
+                                    class="w-1 h-1 rounded-full bg-[#c5a880]/40 group-hover:bg-[#c5a880] transition-colors"></span>
+                                <span>FAQ / Tanya Jawab</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#hero"
+                                class="group flex items-center gap-2 hover:text-white transition-colors duration-300">
+                                <span
+                                    class="w-1 h-1 rounded-full bg-[#c5a880]/40 group-hover:bg-[#c5a880] transition-colors"></span>
+                                <span>Beranda</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#philosophy"
+                                class="group flex items-center gap-2 hover:text-white transition-colors duration-300">
+                                <span
+                                    class="w-1 h-1 rounded-full bg-[#c5a880]/40 group-hover:bg-[#c5a880] transition-colors"></span>
+                                <span>Filosofi Brand</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#collections"
+                                class="group flex items-center gap-2 hover:text-white transition-colors duration-300">
+                                <span
+                                    class="w-1 h-1 rounded-full bg-[#c5a880]/40 group-hover:bg-[#c5a880] transition-colors"></span>
+                                <span>Koleksi Signature</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#scent-finder"
+                                class="group flex items-center gap-2 hover:text-white transition-colors duration-300">
+                                <span
+                                    class="w-1 h-1 rounded-full bg-[#c5a880]/40 group-hover:bg-[#c5a880] transition-colors"></span>
+                                <span>Scent Finder</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3">
+                    <p
+                        class="text-xs font-semibold text-white uppercase tracking-widest mb-6 border-b border-neutral-900 pb-2">
+                        Marketplace</p>
+                    <ul class="space-y-4 text-xs font-light">
+                        <li>
+                            <a href="https://shopee.co.id" target="_blank" rel="noopener noreferrer"
+                                class="group flex items-center gap-3 hover:text-white transition-colors duration-300">
+                                <span
+                                    class="w-8 h-8 rounded-lg bg-neutral-950 border border-neutral-900 group-hover:border-[#ee4d2d] flex items-center justify-center transition-colors">
+                                    <svg class="w-4 h-4 text-neutral-500 group-hover:text-[#ee4d2d] fill-none stroke-current transition-colors"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                    </svg>
+                                </span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="font-medium text-neutral-300 group-hover:text-white transition-colors">Shopee
+                                        Mall</span>
+                                    <span class="text-[10px] text-neutral-500 group-hover:text-neutral-400">Noiré
+                                        Official Shop</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"
+                                class="group flex items-center gap-3 hover:text-white transition-colors duration-300">
+                                <span
+                                    class="w-8 h-8 rounded-lg bg-neutral-950 border border-neutral-900 group-hover:border-[#00f2fe] flex items-center justify-center transition-colors">
+                                    <svg class="w-4 h-4 text-neutral-500 group-hover:text-white fill-current transition-colors"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M12.525.02c1.31-.02 2.61.08 3.9.31v3.44c-.73-.08-1.47-.07-2.2-.02v7.88a4.87 4.87 0 0 1-2.92 4.41 4.79 4.79 0 0 1-5.75-1.54 4.87 4.87 0 0 1 .4-6.22 4.83 4.83 0 0 1 3.57-1.43c.12 0 .24 0 .36.02V4.85a7.92 7.92 0 0 0-4.33 1.25 7.82 7.82 0 0 0-3.32 4.6 7.92 7.92 0 0 0 1.2 6.8 7.82 7.82 0 0 0 5.4 3.48 7.92 7.92 0 0 0 7.45-3.8 7.82 7.82 0 0 0 .97-4.43V4.9c1.07.76 2.3 1.28 3.6 1.5v-3.4c-1.1-.14-2.14-.64-2.95-1.44a7.96 7.96 0 0 1-1.34-1.54h-3.9z" />
+                                    </svg>
+                                </span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="font-medium text-neutral-300 group-hover:text-white transition-colors">TikTok
+                                        Shop</span>
+                                    <span
+                                        class="text-[10px] text-neutral-500 group-hover:text-neutral-400">@noireparfum.id</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://tokopedia.com" target="_blank" rel="noopener noreferrer"
+                                class="group flex items-center gap-3 hover:text-white transition-colors duration-300">
+                                <span
+                                    class="w-8 h-8 rounded-lg bg-neutral-950 border border-neutral-900 group-hover:border-[#42b549] flex items-center justify-center transition-colors">
+                                    <svg class="w-4 h-4 text-neutral-500 group-hover:text-[#42b549] fill-none stroke-current transition-colors"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                    </svg>
+                                </span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="font-medium text-neutral-300 group-hover:text-white transition-colors">Tokopedia</span>
+                                    <span class="text-[10px] text-neutral-500 group-hover:text-neutral-400">Noire Parfum
+                                        Official</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3">
+                    <p
+                        class="text-xs font-semibold text-white uppercase tracking-widest mb-6 border-b border-neutral-900 pb-2">
+                        Media Sosial & Kontak</p>
+                    <div class="flex flex-col gap-4">
+
+                        <a href="https://www.instagram.com/noirescent_?igsh=dnQ4YnBjaTMyaHhl&utm_source=qr"
+                            target="_blank" rel="noopener noreferrer"
+                            class="group flex items-center gap-3 hover:text-white transition-colors duration-300">
+                            <span
+                                class="w-8 h-8 rounded-full bg-neutral-950 border border-neutral-900 group-hover:border-[#e1306c] flex items-center justify-center transition-colors">
+                                <i data-lucide="instagram"
+                                    class="w-4 h-4 text-neutral-500 group-hover:text-[#e1306c] transition-colors"></i>
+                            </span>
+                            <div class="flex flex-col">
+                                <span
+                                    class="text-xs font-medium text-neutral-300 group-hover:text-white transition-colors">Instagram</span>
+                                <span
+                                    class="text-[10px] text-neutral-500 group-hover:text-neutral-400">@noirescent_</span>
+                            </div>
+                        </a>
+
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"
+                            class="group flex items-center gap-3 hover:text-white transition-colors duration-300">
+                            <span
+                                class="w-8 h-8 rounded-full bg-neutral-950 border border-neutral-900 group-hover:border-[#00f2fe] flex items-center justify-center transition-colors">
+                                <svg class="w-4 h-4 text-neutral-500 group-hover:text-white fill-current transition-colors"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M12.525.02c1.31-.02 2.61.08 3.9.31v3.44c-.73-.08-1.47-.07-2.2-.02v7.88a4.87 4.87 0 0 1-2.92 4.41 4.79 4.79 0 0 1-5.75-1.54 4.87 4.87 0 0 1 .4-6.22 4.83 4.83 0 0 1 3.57-1.43c.12 0 .24 0 .36.02V4.85a7.92 7.92 0 0 0-4.33 1.25 7.82 7.82 0 0 0-3.32 4.6 7.92 7.92 0 0 0 1.2 6.8 7.82 7.82 0 0 0 5.4 3.48 7.92 7.92 0 0 0 7.45-3.8 7.82 7.82 0 0 0 .97-4.43V4.9c1.07.76 2.3 1.28 3.6 1.5v-3.4c-1.1-.14-2.14-.64-2.95-1.44a7.96 7.96 0 0 1-1.34-1.54h-3.9z" />
+                                </svg>
+                            </span>
+                            <div class="flex flex-col">
+                                <span
+                                    class="text-xs font-medium text-neutral-300 group-hover:text-white transition-colors">TikTok</span>
+                                <span
+                                    class="text-[10px] text-neutral-500 group-hover:text-neutral-400">@noire.parfum</span>
+                            </div>
+                        </a>
+
+                        <a href="https://www.threads.com/@noirescent_?igshid=NTc4MTIwNjQ2YQ==" target="_blank"
+                            rel="noopener noreferrer"
+                            class="group flex items-center gap-3 hover:text-white transition-colors duration-300">
+                            <span
+                                class="w-8 h-8 rounded-full bg-neutral-950 border border-neutral-900 group-hover:border-white flex items-center justify-center transition-colors">
+                                <svg class="w-4 h-4 text-neutral-500 group-hover:text-white fill-none stroke-current transition-colors"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M12 2a10 10 0 1 0 10 10H18a6 6 0 1 1-6-6c2.8 0 5 2.2 5 5v1.5a1.5 1.5 0 0 1-3 0V11">
+                                    </path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </span>
+                            <div class="flex flex-col">
+                                <span
+                                    class="text-xs font-medium text-neutral-300 group-hover:text-white transition-colors">Threads</span>
+                                <span
+                                    class="text-[10px] text-neutral-500 group-hover:text-neutral-400">@noirescent_</span>
+                            </div>
+                        </a>
+
+                        <div class="mt-2 pt-2 border-t border-neutral-900">
+                            <a href="https://wa.me/62882002890974" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex w-full items-center justify-center gap-3 bg-neutral-950 border border-neutral-900 hover:border-[#c5a880] px-4 py-3 rounded-full text-xs text-neutral-300 hover:text-white transition-all duration-300 hover:shadow-gold-glow group">
+                                <i data-lucide="phone"
+                                    class="w-4 h-4 text-[#c5a880] group-hover:scale-110 transition-transform"></i>
+                                <span class="font-semibold font-sans">+62 882-0028-90974</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div
+                class="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8 text-[10px] font-light text-neutral-500 uppercase tracking-widest">
+                <p>&copy; 2026 NOIRE PARFUM. HAK CIPTA DILINDUNGI UNDANG-UNDANG.</p>
+                <p>Boutique d'Artisan | Made with Passion</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <div id="cart-drawer" class="fixed inset-0 z-50 invisible transition-all duration-500 overflow-hidden"
+        aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div id="cart-backdrop"
+            class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-500 backdrop-blur-sm"></div>
+
+        <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <div id="cart-panel"
+                class="pointer-events-auto w-screen max-w-md translate-x-full transition-transform duration-500 ease-in-out glass-premium text-white flex flex-col h-full shadow-2xl border-l border-neutral-900">
+
+                <div class="px-6 py-6 border-b border-neutral-900/60 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="shopping-cart" class="w-5 h-5 text-gold-500"></i>
+                        <h2 class="text-base uppercase tracking-[0.2em] font-medium text-white" id="slide-over-title">
+                            Keranjang Anda
+                        </h2>
+                    </div>
+                    <button id="close-cart-btn"
+                        class="p-2 -mr-2 text-neutral-400 hover:text-white rounded-full hover:bg-neutral-900/50 transition-colors">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <div class="flex-1 overflow-y-auto px-6 py-4 space-y-4" id="cart-items-container">
+                    <div
+                        class="flex flex-col items-center justify-center h-full text-center text-neutral-500 space-y-3 py-12">
+                        <i data-lucide="shopping-bag" class="w-12 h-12 stroke-[1]"></i>
+                        <p class="text-xs uppercase tracking-widest">Keranjang belanja Anda kosong</p>
+                    </div>
+                </div>
+
+                <div class="border-t border-neutral-900/80 px-6 py-6 bg-neutral-950/40 backdrop-blur-md space-y-6">
+                    <div class="flex justify-between text-sm uppercase tracking-wider">
+                        <span class="text-neutral-400">Subtotal</span>
+                        <span id="cart-subtotal" class="font-serif text-lg text-gold-light tracking-wide">Rp 0</span>
+                    </div>
+                    <p class="text-[11px] text-neutral-500 font-light leading-relaxed">
+                        Pajak dan biaya pengiriman akan dihitung saat konfirmasi pemesanan eksklusif dilakukan.
+                    </p>
+                    <div class="space-y-3">
+                        <button id="checkout-btn"
+                            class="w-full flex items-center justify-center px-6 py-4 rounded-full text-xs font-semibold tracking-widest uppercase bg-gold-gradient text-neutral-950 hover:shadow-gold-glow-lg hover:scale-[1.02] transition-all duration-300">
+                            Lanjutkan Ke Pemesanan
+                        </button>
+                        <button id="clear-cart-btn"
+                            class="w-full text-center py-2.5 text-[10px] uppercase tracking-widest text-neutral-500 hover:text-rose-400 transition-colors">
+                            Kosongkan Keranjang
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Initialize AOS Transitions
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // ==================== WELCOME MODAL LOGIC ====================
+        function showWelcomeModal() {
+            const modal = document.getElementById('welcome-modal');
+            const box = modal.querySelector('.relative');
+
+            setTimeout(() => {
+                modal.classList.remove('invisible', 'opacity-0');
+                box.classList.remove('scale-95');
+                box.classList.add('scale-100');
+            }, 500);
+        }
+
+        function closeWelcomeModal() {
+            const modal = document.getElementById('welcome-modal');
+            const box = modal.querySelector('.relative');
+
+            modal.classList.add('opacity-0');
+            box.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('invisible');
+            }, 700);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showWelcomeModal();
+        });
+
+        // 1. Mobile Menu Drawer Navigation Control
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+        });
+
+        const closeMobileMenu = () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+        };
+
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // 2. Glassmorphism Sticky Navbar on Scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass', 'py-4', 'shadow-2xl');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('glass', 'py-4', 'shadow-2xl');
+                navbar.classList.add('py-6');
+            }
+        });
+
+        // 3. 3D Parallax Mouse Hover Effect on Hero Perfume Bottle
+        const heroImageWrap = document.getElementById('hero-image-wrap');
+        const heroBottle = document.getElementById('hero-bottle');
+
+        heroImageWrap.addEventListener('mousemove', (e) => {
+            const rect = heroImageWrap.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+
+            const rotX = -(y / rect.height) * 15;
+            const rotY = (x / rect.width) * 15;
+            const transX = (x / rect.width) * 15;
+            const transY = (y / rect.height) * 15;
+
+            heroBottle.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(${transX}px, ${transY}px, 20px)`;
+        });
+
+        heroImageWrap.addEventListener('mouseleave', () => {
+            heroBottle.style.transform = 'rotateX(0deg) rotateY(0deg) translate3d(0px, 0px, 0px)';
+        });
+
+        // 4. Interactive Signature Collections Tab Switching
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-trigger').forEach(trigger => {
+                trigger.classList.remove('tab-active');
+            });
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.add('hidden');
+            });
+
+            const selectedTrigger = document.getElementById(`tab-${tabId}`);
+            const selectedPane = document.getElementById(`content-${tabId}`);
+
+            selectedTrigger.classList.add('tab-active');
+            selectedPane.classList.remove('hidden');
+
+            AOS.refresh();
+        }
+
+        // 5. Interactive Scent Finder Logic & Quiz Flow
+        let currentQuizStep = 1;
+        let quizAnswers = { 1: '', 2: '', 3: '' };
+
+        const perfumeDatabase = {
+            'opium': {
+                name: 'Noire Opium',
+                vibe: 'Sensual & Warm',
+                desc: 'Paduan misterius biji kopi hitam panggang, bunga melati malam, dan sentuhan kaya dari dark vanilla orchid yang memancarkan sensualitas tak tertandingi.',
+                top: 'Coffee Beans',
+                heart: 'Midnight Jasmine',
+                base: 'Dark Vanilla Orchid',
+                image: './assets/images/noire_opium_bottle_1779387278467.png'
+            },
+            'obscur': {
+                name: 'L\'Obscur',
+                vibe: 'Woody & Warm',
+                desc: 'Kombinasi menawan antara ketegasan cedarwood merah, nuansa maskulin dari fine leather, dan sentuhan magis dari resin amber yang hangat.',
+                top: 'Saffron & Cardamom',
+                heart: 'Cedarwood & Leather',
+                base: 'Amber & Sandalwood',
+                image: './assets/images/lobscur_bottle_1779387332654.png'
+            },
+            'mystere': {
+                name: 'Mystère',
+                vibe: 'Fresh & Sophisticated',
+                desc: 'Kesegaran mawar Damaskus basah yang mekar indah di tengah harum melati malam, dibalut sentuhan oud kayu berharga dan kemewahan praline.',
+                top: 'Blackcurrant & Bergamot',
+                heart: 'Damask Rose & Jasmine',
+                base: 'White Musk & Oud',
+                image: './assets/images/mystere_bottle_1779387500072.png'
+            }
+        };
+
+        function selectOption(step, option) {
+            quizAnswers[step] = option;
+
+            if (step < 3) {
+                document.getElementById(`quiz-step-${step}`).classList.add('hidden');
+                currentQuizStep = step + 1;
+                document.getElementById(`quiz-step-${currentQuizStep}`).classList.remove('hidden');
+                const progressPercentage = (currentQuizStep / 3) * 100;
+                document.getElementById('quiz-progress').style.width = `${progressPercentage}%`;
+            } else {
+                document.getElementById(`quiz-step-3`).classList.add('hidden');
+                document.getElementById('quiz-loading').classList.remove('hidden');
+                document.getElementById('quiz-progress').style.width = '100%';
+
+                setTimeout(() => {
+                    document.getElementById('quiz-loading').classList.add('hidden');
+                    displayQuizResult();
+                }, 1800);
+            }
+        }
+
+        function displayQuizResult() {
+            const counts = { A: 0, B: 0, C: 0 };
+            counts[quizAnswers[1]]++;
+            counts[quizAnswers[2]]++;
+            counts[quizAnswers[3]]++;
+
+            let recommendationKey = 'opium';
+            if (counts.B > counts.A && counts.B >= counts.C) {
+                recommendationKey = 'obscur';
+            } else if (counts.C > counts.A && counts.C > counts.B) {
+                recommendationKey = 'mystere';
+            }
+
+            const perfume = perfumeDatabase[recommendationKey];
+
+            document.getElementById('result-perfume-img').src = perfume.image;
+            document.getElementById('result-perfume-img').alt = perfume.name;
+            document.getElementById('result-vibe-badge').innerText = perfume.vibe;
+            document.getElementById('result-perfume-name').innerText = perfume.name;
+            document.getElementById('result-perfume-desc').innerText = perfume.desc;
+            document.getElementById('result-top-note').innerText = perfume.top;
+            document.getElementById('result-heart-note').innerText = perfume.heart;
+            document.getElementById('result-base-note').innerText = perfume.base;
+
+            const orderCta = document.getElementById('result-cta-order');
+            const newOrderCta = orderCta.cloneNode(true);
+            orderCta.parentNode.replaceChild(newOrderCta, orderCta);
+            newOrderCta.addEventListener('click', (e) => {
+                e.preventDefault();
+                buyNow(recommendationKey);
+            });
+
+            document.getElementById('quiz-result').classList.remove('hidden');
+        }
+
+        function resetQuiz() {
+            currentQuizStep = 1;
+            quizAnswers = { 1: '', 2: '', 3: '' };
+            document.getElementById('quiz-progress').style.width = '33.33%';
+
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-loading').classList.add('hidden');
+            document.getElementById('quiz-step-2').classList.add('hidden');
+            document.getElementById('quiz-step-3').classList.add('hidden');
+            document.getElementById('quiz-step-1').classList.remove('hidden');
+        }
+
+
+        // ==================== ENGINE REVIEWS DENGAN MULTI-RATING & GLOBAL DASHBOARD SUMMARY ====================
+        const DEFAULT_REVIEWS = [
+            { id: 1, name: "Nizar Hakim", rAroma: 5, rEfektifitas: 5, rShipping: 5, rKetahanan: 5, variant: "Noiré Opium", comment: "Noire Opium benar-benar melampaui ekspektasi saya. Setiap kali saya memakainya di malam hari, aroma kopinya begitu memikat dan bertahan lama.", date: "2026-05-20", initials: "NH" },
+            { id: 2, name: "Relingga", rAroma: 5, rEfektifitas: 4, rShipping: 5, rKetahanan: 5, variant: "L'Obscur", comment: "Sebagai pria yang sering menghadiri rapat direksi, L'Obscur memberikan saya aura berwibawa dan berkelas. Aroma cedarwood-nya sangat kuat dan tegas.", date: "2026-05-18", initials: "R" },
+            { id: 3, name: "Ariq Hisyam", rAroma: 4, rEfektifitas: 5, rShipping: 5, rKetahanan: 4, variant: "Mystère", comment: "Mystère adalah perwujudan keindahan feminin yang misterius. Perpaduan mawar gelap dan oud Prancis-nya sangat eksklusif dan anggun.", date: "2026-05-12", initials: "AH" }
+        ];
+
+        let userReviews = JSON.parse(localStorage.getItem('noire_user_reviews')) || DEFAULT_REVIEWS;
+
+        // Objek State Menyimpan Nilai Pilih 4 Rating Kategori
+        let selectedRatings = {
+            aroma: 5,
+            efektifitas: 5,
+            shipping: 5,
+            ketahanan: 5
+        };
+
+        const RATING_LABELS = {
+            1: "Sangat Buruk",
+            2: "Kurang Bagus",
+            3: "Cukup Memuaskan",
+            4: "Sangat Bagus",
+            5: "Sempurna"
+        };
+
+        // Fungsi Pengendali Sistem Multi-Bintang Interaktif (Bebas dari Bug Overwrite Lucide)
+        function initGoogleStarsInput() {
+            const categories = ['aroma', 'efektifitas', 'shipping', 'ketahanan'];
+
+            categories.forEach(cat => {
+                const containers = document.querySelectorAll(`.interactive-stars-group[data-rating-category="${cat}"]`);
+
+                containers.forEach(container => {
+                    let starsSetupHtml = '';
+                    for (let i = 1; i <= 5; i++) {
+                        starsSetupHtml += `
+              <svg data-star-value="${i}" class="google-star-${cat} w-5 h-5 text-neutral-700 transition-all duration-200 hover:scale-125 px-0.5 cursor-pointer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>`;
+                    }
+                    container.innerHTML = starsSetupHtml;
+                });
+
+                const labelText = document.getElementById(`star-rating-text-${cat}`);
+                const stars = document.querySelectorAll(`.google-star-${cat}`);
+
+                function highlightStars(count) {
+                    stars.forEach((star, index) => {
+                        if (index < count) {
+                            star.setAttribute('fill', '#c5a880');
+                            star.setAttribute('stroke', '#c5a880');
+                            star.classList.remove('text-neutral-700');
+                            star.classList.add('text-[#c5a880]');
+                        } else {
+                            star.setAttribute('fill', 'none');
+                            star.setAttribute('stroke', 'currentColor');
+                            star.classList.add('text-neutral-700');
+                            star.classList.remove('text-[#c5a880]');
+                        }
+                    });
+                    if (labelText) labelText.innerText = RATING_LABELS[count] || "Pilih Rating";
+                }
+
+                stars.forEach(star => {
+                    const val = parseInt(star.getAttribute('data-star-value'));
+
+                    star.addEventListener('mouseenter', () => highlightStars(val));
+                    star.addEventListener('mouseleave', () => highlightStars(selectedRatings[cat]));
+                    star.addEventListener('click', () => {
+                        selectedRatings[cat] = val;
+                        highlightStars(selectedRatings[cat]);
+                    });
+                });
+
+                highlightStars(selectedRatings[cat]);
+            });
+        }
+
+        // Fungsi Utama Render Ringkasan Rating Keseluruhan & Daftar Review Feed
+        function renderReviews() {
+            const container = document.getElementById('reviews-list-container');
+            const summaryContainer = document.getElementById('overall-rating-summary');
+            if (!container || !summaryContainer) return;
+
+            if (userReviews.length === 0) {
+                summaryContainer.innerHTML = '';
+                container.innerHTML = `
+          <div class="flex flex-col items-center justify-center py-12 text-center text-neutral-600">
+            <p class="text-xs uppercase tracking-widest">Belum ada ulasan. Jadilah yang pertama memberikan kesan!</p>
+          </div>`;
+                return;
+            }
+
+            // 1. HITUNG STATISTIK / METRIK RATING KESELURUHAN (DASHBOARD)
+            let totalAroma = 0, totalEfektifitas = 0, totalShipping = 0, totalKetahanan = 0;
+
+            userReviews.forEach(rev => {
+                totalAroma += rev.rAroma || 5;
+                totalEfektifitas += rev.rEfektifitas || 5;
+                totalShipping += rev.rShipping || 5;
+                totalKetahanan += rev.rKetahanan || 5;
+            });
+
+            const count = userReviews.length;
+            const avgAroma = (totalAroma / count).toFixed(1);
+            const avgEfektifitas = (totalEfektifitas / count).toFixed(1);
+            const avgShipping = (totalShipping / count).toFixed(1);
+            const avgKetahanan = (totalKetahanan / count).toFixed(1);
+
+            // Rumus kalkulasi nilai rata-rata keseluruhan (global score)
+            const globalAvg = ((parseFloat(avgAroma) + parseFloat(avgEfektifitas) + parseFloat(avgShipping) + parseFloat(avgKetahanan)) / 4).toFixed(1);
+
+            let summaryStarsHtml = '';
+            for (let i = 0; i < 5; i++) {
+                if (i < Math.round(globalAvg)) {
+                    summaryStarsHtml += `<svg class="w-4 h-4 text-[#c5a880]" viewBox="0 0 24 24" fill="#c5a880" stroke="#c5a880" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+                } else {
+                    summaryStarsHtml += `<svg class="w-4 h-4 text-neutral-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+                }
+            }
+
+            // Render Struktur Dashboard Rating Keseluruhan ke HTML
+            summaryContainer.innerHTML = `
+        <div class="glass p-6 rounded-3xl border border-neutral-900 shadow-2xl flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+          <div class="text-center sm:border-r sm:border-neutral-900 sm:pr-8 flex-shrink-0 w-full sm:w-auto">
+            <p class="text-5xl font-serif text-white tracking-tight mb-1">${globalAvg}</p>
+            <div class="flex items-center justify-center gap-0.5">
+              ${summaryStarsHtml}
+            </div>
+            <p class="text-[9px] text-neutral-500 uppercase tracking-widest mt-2 font-medium">${count} Total Penilaian</p>
+          </div>
+          
+          <div class="flex-1 w-full space-y-2.5">
+            <h4 class="text-[10px] uppercase tracking-widest text-neutral-400 font-bold tracking-wider mb-1">Rincian Kepuasan</h4>
+            
+            <!-- Aroma -->
+            <div>
+              <div class="flex justify-between items-center text-[10px] mb-1">
+                <span class="text-neutral-500 font-light">Kualitas Keharuman (Scent)</span>
+                <span class="text-white font-mono font-medium">${avgAroma} / 5</span>
+              </div>
+              <div class="h-1 bg-neutral-950 rounded-full overflow-hidden">
+                <div class="h-full bg-gold-gradient rounded-full" style="width: ${(avgAroma / 5) * 100}%"></div>
+              </div>
+            </div>
+
+            <!-- Efektifitas -->
+            <div>
+              <div class="flex justify-between items-center text-[10px] mb-1">
+                <span class="text-neutral-500 font-light">Efektifitas Penyemprotan</span>
+                <span class="text-white font-mono font-medium">${avgEfektifitas} / 5</span>
+              </div>
+              <div class="h-1 bg-neutral-950 rounded-full overflow-hidden">
+                <div class="h-full bg-gold-gradient rounded-full" style="width: ${(avgEfektifitas / 5) * 100}%"></div>
+              </div>
+            </div>
+
+            <!-- Shipping -->
+            <div>
+              <div class="flex justify-between items-center text-[10px] mb-1">
+                <span class="text-neutral-500 font-light">Kecepatan Pengiriman & Box Proteksi</span>
+                <span class="text-white font-mono font-medium">${avgShipping} / 5</span>
+              </div>
+              <div class="h-1 bg-neutral-950 rounded-full overflow-hidden">
+                <div class="h-full bg-gold-gradient rounded-full" style="width: ${(avgShipping / 5) * 100}%"></div>
+              </div>
+            </div>
+
+            <!-- Ketahanan -->
+            <div>
+              <div class="flex justify-between items-center text-[10px] mb-1">
+                <span class="text-neutral-500 font-light">Daya Tahan Aroma (Longevity)</span>
+                <span class="text-white font-mono font-medium">${avgKetahanan} / 5</span>
+              </div>
+              <div class="h-1 bg-neutral-950 rounded-full overflow-hidden">
+                <div class="h-full bg-gold-gradient rounded-full" style="width: ${(avgKetahanan / 5) * 100}%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+            // 2. RENDER DAFTAR FEED LIST KARTU ULASAN INDIVIDU
+            function getMiniStarsHtml(ratingValue) {
+                let miniHtml = '';
+                for (let i = 0; i < 5; i++) {
+                    if (i < ratingValue) {
+                        miniHtml += `
+              <svg class="w-2.5 h-2.5 text-[#c5a880]" viewBox="0 0 24 24" fill="#c5a880" stroke="#c5a880" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>`;
+                    } else {
+                        miniHtml += `
+              <svg class="w-2.5 h-2.5 text-neutral-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>`;
+                    }
+                }
+                return miniHtml;
+            }
+
+            let reviewsHtml = '';
+            userReviews.forEach(rev => {
+                const aromaScore = rev.rAroma || 5;
+                const efektifitasScore = rev.rEfektifitas || 5;
+                const shippingScore = rev.rShipping || 5;
+                const ketahananScore = rev.rKetahanan || 5;
+                const cardAvg = ((aromaScore + efektifitasScore + shippingScore + ketahananScore) / 4).toFixed(1);
+
+                let mainStarsHtml = '';
+                for (let i = 0; i < 5; i++) {
+                    if (i < Math.round(cardAvg)) {
+                        mainStarsHtml += `
+              <svg class="w-3.5 h-3.5 text-[#c5a880]" viewBox="0 0 24 24" fill="#c5a880" stroke="#c5a880" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>`;
+                    } else {
+                        mainStarsHtml += `
+              <svg class="w-3.5 h-3.5 text-neutral-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>`;
+                    }
+                }
+
+                reviewsHtml += `
+          <div class="glass p-6 rounded-2xl border border-neutral-900 shadow-xl fade-slide-in relative group">
+            <div class="flex justify-between items-start gap-4 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-neutral-900 border border-[#c5a880]/20 flex items-center justify-center text-xs font-semibold text-[#c5a880] uppercase">
+                  ${rev.initials || rev.name.slice(0, 2)}
+                </div>
+                <div>
+                  <h4 class="text-xs font-semibold text-white tracking-widest uppercase">${rev.name}</h4>
+                  <p class="text-[9px] text-neutral-500 mt-0.5">${rev.date}</p>
+                </div>
+              </div>
+              <div class="flex flex-col items-end gap-0.5">
+                <div class="flex items-center gap-0.5">
+                  ${mainStarsHtml}
+                </div>
+                <span class="text-[9px] font-mono text-neutral-500 mt-0.5">Skor: ${cardAvg}</span>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <span class="inline-flex items-center text-[9px] uppercase tracking-wider text-[#c5a880] bg-[#c5a880]/5 px-2.5 py-0.5 rounded border border-[#c5a880]/10 font-medium">
+                Varian: ${rev.variant || 'Signature Collection'}
+              </span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[10px] bg-neutral-950/40 border border-neutral-900 px-3 py-2.5 rounded-xl mb-3.5">
+              <div class="flex justify-between items-center">
+                <span class="text-neutral-500">Aroma</span>
+                <div class="flex gap-0.5">${getMiniStarsHtml(aromaScore)}</div>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-neutral-500">Efektifitas</span>
+                <div class="flex gap-0.5">${getMiniStarsHtml(efektifitasScore)}</div>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-neutral-500">Shipping</span>
+                <div class="flex gap-0.5">${getMiniStarsHtml(shippingScore)}</div>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-neutral-500">Ketahanan</span>
+                <div class="flex gap-0.5">${getMiniStarsHtml(ketahananScore)}</div>
+              </div>
+            </div>
+
+            <p class="text-xs font-light text-neutral-300 leading-relaxed font-sans italic">
+              "${rev.comment}"
+            </p>
+          </div>`;
+            });
+
+            container.innerHTML = reviewsHtml;
+        }
+
+        // Fungsi Pengiriman Ulasan Baru
+        function handleReviewSubmit(event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('review-name');
+            const variantInput = document.getElementById('review-variant');
+            const commentInput = document.getElementById('review-comment');
+
+            const nameWords = nameInput.value.trim().split(' ');
+            let initials = nameWords[0].slice(0, 1);
+            if (nameWords.length > 1) {
+                initials += nameWords[1].slice(0, 1);
+            }
+            initials = initials.toUpperCase();
+
+            const today = new Date();
+            const formattedDate = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+
+            const newReview = {
+                id: Date.now(),
+                name: nameInput.value,
+                rAroma: selectedRatings.aroma,
+                rEfektifitas: selectedRatings.efektifitas,
+                rShipping: selectedRatings.shipping,
+                rKetahanan: selectedRatings.ketahanan,
+                variant: variantInput.value,
+                comment: commentInput.value,
+                date: formattedDate,
+                initials: initials
+            };
+
+            userReviews.unshift(newReview);
+            localStorage.setItem('noire_user_reviews', JSON.stringify(userReviews));
+            renderReviews();
+
+            // Reset Form Inputs
+            nameInput.value = '';
+            variantInput.value = '';
+            commentInput.value = '';
+
+            // Reset Ratings State ke Angka 5 Kembali
+            selectedRatings = { aroma: 5, efektifitas: 5, shipping: 5, ketahanan: 5 };
+            initGoogleStarsInput();
+
+            alert('Terima kasih! Ulasan multi-kriteria Anda telah berhasil diterbitkan.');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderReviews();
+            initGoogleStarsInput();
+        });
+
+
+        // 7. Interactive Consultation Form & Custom Alert
+        function handleContactSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const message = document.getElementById('form-message').value;
+
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = 'Mengirim Pesan...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+
+                document.getElementById('contact-form').reset();
+                document.getElementById('contact-success').classList.remove('hidden');
+
+                setTimeout(() => {
+                    document.getElementById('contact-success').classList.add('hidden');
+                }, 8000);
+
+            }, 1500);
+        }
+
+        // 8. Newsletter Subscription
+        function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('newsletter-email');
+            const feedback = document.getElementById('newsletter-success');
+
+            const originalBtn = event.target.querySelector('button');
+            originalBtn.innerText = '...';
+            originalBtn.disabled = true;
+
+            setTimeout(() => {
+                originalBtn.innerText = 'Daftar';
+                originalBtn.disabled = false;
+
+                if (emailInput) emailInput.value = '';
+                if (feedback) {
+                    feedback.classList.remove('hidden');
+                    setTimeout(() => {
+                        feedback.classList.add('hidden');
+                    }, 6000);
+                }
+            }, 1000);
+        }
+
+        // 9. FAQ Accordion Animation Logic
+        function toggleFaq(index) {
+            const answer = document.getElementById(`faq-answer-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+
+            if (answer.classList.contains('hidden')) {
+                document.querySelectorAll('[id^="faq-answer-"]').forEach(ans => {
+                    ans.classList.add('hidden');
+                    ans.style.maxHeight = '0';
+                });
+                document.querySelectorAll('[id^="faq-icon-"]').forEach(ico => {
+                    ico.setAttribute('data-lucide', 'plus');
+                    ico.classList.remove('rotate-45');
+                });
+
+                answer.classList.remove('hidden');
+                setTimeout(() => {
+                    answer.style.maxHeight = '200px';
+                }, 10);
+
+                icon.setAttribute('data-lucide', 'x');
+                icon.classList.add('rotate-45');
+            } else {
+                answer.style.maxHeight = '0';
+                setTimeout(() => {
+                    answer.classList.add('hidden');
+                }, 300);
+                icon.setAttribute('data-lucide', 'plus');
+                icon.classList.remove('rotate-45');
+            }
+            lucide.createIcons();
+        }
+
+        // 10. Smooth Scroll to FAQ and auto-open it
+        function openFaqAndScroll(event) {
+            event.preventDefault();
+
+            const faqSection = document.getElementById('contact');
+            if (faqSection) {
+                faqSection.scrollIntoView({ behavior: 'smooth' });
+
+                setTimeout(() => {
+                    const answer = document.getElementById('faq-answer-1');
+                    if (answer && answer.classList.contains('hidden')) {
+                        toggleFaq(1);
+                    }
+                }, 800);
+            }
+        }
+
+        // ==================== NOIRÉ CART SYSTEM ENGINE ====================
+        const PRODUCT_CATALOG = {
+            opium: { id: 'opium', name: 'Noiré Opium', price: 1850000, img: './assets/images/noire_opium_bottle_1779387278467.png', size: '100ml' },
+            obscur: { id: 'obscur', name: "L'Obscur", price: 1950000, img: './assets/images/lobscur_bottle_1779387332654.png', size: '100ml' },
+            mystere: { id: 'mystere', name: 'Mystère', price: 1900000, img: './assets/images/mystere_bottle_1779387500072.png', size: '100ml' }
+        };
+
+        let cart = JSON.parse(localStorage.getItem('noire_cart')) || [];
+
+        const cartDrawer = document.getElementById('cart-drawer');
+        const cartBackdrop = document.getElementById('cart-backdrop');
+        const cartPanel = document.getElementById('cart-panel');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const cartSubtotalElement = document.getElementById('cart-subtotal');
+        const clearCartBtn = document.getElementById('clear-cart-btn');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initCartEventListeners();
+            updateCartUI();
+        });
+
+        function initCartEventListeners() {
+            document.querySelectorAll('a[href="#cart"]').forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openCartDrawer();
+                });
+            });
+
+            document.getElementById('close-cart-btn').addEventListener('click', closeCartDrawer);
+            cartBackdrop.addEventListener('click', closeCartDrawer);
+
+            clearCartBtn.addEventListener('click', () => {
+                cart = [];
+                saveAndRenderCart();
+            });
+
+            checkoutBtn.addEventListener('click', processCheckoutToOrder);
+        }
+
+        function openCartDrawer() {
+            cartDrawer.classList.remove('invisible');
+            setTimeout(() => {
+                cartBackdrop.classList.remove('opacity-0');
+                cartBackdrop.classList.add('opacity-100');
+                cartPanel.classList.remove('translate-x-full');
+                cartPanel.classList.add('translate-x-0');
+            }, 10);
+        }
+
+        function closeCartDrawer() {
+            cartBackdrop.classList.remove('opacity-100');
+            cartBackdrop.classList.add('opacity-0');
+            cartPanel.classList.remove('translate-x-0');
+            cartPanel.classList.add('translate-x-full');
+
+            setTimeout(() => {
+                cartDrawer.classList.add('invisible');
+            }, 500);
+        }
+
+        async function processCheckoutToOrder() {
+            if (cart.length === 0) {
+                alert('Keranjang belanja Anda kosong. Silakan tambahkan beberapa produk signature Noiré terlebih dahulu.');
+                return;
+            }
+
+            const originalBtnText = checkoutBtn.innerText;
+            checkoutBtn.disabled = true;
+            checkoutBtn.innerText = 'MEMPROSES PEMESANAN...';
+
+            const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+            try {
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ items: cart, subtotal: subtotal })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Gagal merespon dari server checkout.');
+                }
+
+                const transaction = await response.json();
+                cart = [];
+                saveAndRenderCart();
+                closeCartDrawer();
+
+                checkoutBtn.innerText = 'MENGALIHKAN...';
+                setTimeout(() => {
+                    window.location.href = `paymentgateway.html?id=${transaction.id}`;
+                }, 800);
+
+            } catch (error) {
+                console.warn('Backend server offline, falling back to Local Mock Gateway Engine:', error);
+
+                const transactionId = `TXN-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-${Math.floor(1000 + Math.random() * 9000)}`;
+                const tax = Math.round(subtotal * 0.1);
+                const shipping = 50000;
+                const total = subtotal + tax + shipping;
+
+                const newTransaction = {
+                    id: transactionId,
+                    items: [...cart],
+                    subtotal,
+                    tax,
+                    shipping,
+                    total,
+                    status: 'PENDING',
+                    paymentMethod: null,
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                };
+
+                let localTxns = JSON.parse(localStorage.getItem('noire_transactions')) || [];
+                localTxns.push(newTransaction);
+                localStorage.setItem('noire_transactions', JSON.stringify(localTxns));
+
+                cart = [];
+                saveAndRenderCart();
+                closeCartDrawer();
+
+                checkoutBtn.innerText = 'MENGALIHKAN (MOCK)...';
+                setTimeout(() => {
+                    window.location.href = `paymentgateway.html?id=${transactionId}`;
+                }, 800);
+            }
+        }
+
+        async function buyNow(productId) {
+            const templateProduct = PRODUCT_CATALOG[productId];
+            if (!templateProduct) return;
+
+            const singleItem = [{ ...templateProduct, quantity: 1 }];
+            const subtotal = templateProduct.price;
+
+            try {
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ items: singleItem, subtotal: subtotal })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Gagal merespon dari server checkout.');
+                }
+
+                const transaction = await response.json();
+                window.location.href = `paymentgateway.html?id=${transaction.id}`;
+
+            } catch (error) {
+                console.warn('Backend server offline, falling back to Local Mock Gateway Engine:', error);
+
+                const transactionId = `TXN-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-${Math.floor(1000 + Math.random() * 9000)}`;
+                const tax = Math.round(subtotal * 0.1);
+                const shipping = 50000;
+                const total = subtotal + tax + shipping;
+
+                const newTransaction = {
+                    id: transactionId,
+                    items: singleItem,
+                    subtotal,
+                    tax,
+                    shipping,
+                    total,
+                    status: 'PENDING',
+                    paymentMethod: null,
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                };
+
+                let localTxns = JSON.parse(localStorage.getItem('noire_transactions')) || [];
+                localTxns.push(newTransaction);
+                localStorage.setItem('noire_transactions', JSON.stringify(localTxns));
+
+                window.location.href = `paymentgateway.html?id=${transactionId}`;
+            }
+        }
+
+        function addToCart(productId) {
+            const templateProduct = PRODUCT_CATALOG[productId];
+            if (!templateProduct) return;
+
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...templateProduct, quantity: 1 });
+            }
+
+            saveAndRenderCart();
+            openCartDrawer();
+        }
+
+        function changeQuantity(productId, delta) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
+
+            item.quantity += delta;
+
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.id !== productId);
+            }
+
+            saveAndRenderCart();
+        }
+
+        function removeItemFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveAndRenderCart();
+        }
+
+        function formatIDR(number) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(number);
+        }
+
+        function saveAndRenderCart() {
+            localStorage.setItem('noire_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initCartEventListeners();
+            updateCartUI();
+        });
+
+        function updateCartUI() {
+            const totalItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelectorAll('a[href="#cart"] span').forEach(badge => {
+                badge.textContent = totalItemsCount;
+                if (totalItemsCount > 0) {
+                    badge.classList.remove('scale-90');
+                    badge.classList.add('scale-110', 'bg-gold-500');
+                } else {
+                    badge.classList.remove('scale-110');
+                    badge.classList.add('scale-90');
+                }
+            });
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+          <div class="flex flex-col items-center justify-center h-full text-center text-neutral-500 space-y-3 py-16">
+            <i data-lucide="shopping-bag" class="w-10 h-10 stroke-[1]"></i>
+            <p class="text-xs uppercase tracking-widest text-neutral-600">Keranjang belanja kosong</p>
+          </div>`;
+                cartSubtotalElement.textContent = formatIDR(0);
+                return;
+            }
+
+            let cartHtml = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                cartHtml += `
+          <div class="flex items-center gap-4 bg-neutral-900/30 border border-neutral-900 p-3 rounded-xl hover:border-neutral-800/80 transition-all duration-300">
+            <div class="w-16 h-16 bg-neutral-900 rounded-lg p-1 flex items-center justify-center overflow-hidden flex-shrink-0">
+              <img src="${item.img}" alt="${item.name}" class="max-h-full max-w-full object-contain drop-shadow-md" onerror="this.src='https://placehold.co/100x100/0a0a0a/c5a880?text=Noire'">
+            </div>
+            
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-1">
+                <h4 class="text-xs font-semibold uppercase tracking-wider text-white truncate">${item.name}</h4>
+                <button onclick="removeItemFromCart('${item.id}')" class="text-neutral-500 hover:text-rose-400 transition-colors p-0.5">
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <p class="text-[10px] text-neutral-500 mt-0.5">${item.size}</p>
+              
+              <div class="flex items-center justify-between mt-3">
+                <div class="flex items-center border border-neutral-800 bg-black/40 rounded-md overflow-hidden">
+                  <button onclick="changeQuantity('${item.id}', -1)" class="px-2 py-1 text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors text-xs font-medium">-</button>
+                  <span class="px-3 text-[11px] font-mono text-neutral-200">${item.quantity}</span>
+                  <button onclick="changeQuantity('${item.id}', 1)" class="px-2 py-1 text-neutral-400 hover:text-white hover:bg-neutral-900 transition-colors text-xs font-medium">+</button>
+                </div>
+                <span class="text-xs font-mono font-medium text-gold-light">${formatIDR(itemTotal)}</span>
+              </div>
+            </div>
+          </div>`;
+            });
+
+            cartItemsContainer.innerHTML = cartHtml;
+            cartSubtotalElement.textContent = formatIDR(subtotal);
+
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        }
+    </script>
+</body>
+
+</html>

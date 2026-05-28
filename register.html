@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page with OTP</title>
+
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Efek pendaran lembut saat input fokus */
+        .gold-focus:focus {
+            box-shadow: 0 0 15px rgba(223, 195, 132, 0.15);
+        }
+
+        /* Menyembunyikan spinner panah input type=number */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-[#0a0a0a] text-neutral-200 min-h-screen flex items-center justify-center relative overflow-x-hidden px-4 py-12">
+
+    <!-- Efek Background Glow -->
+    <div
+        class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-amber-950/10 rounded-full filter blur-[100px] pointer-events-none">
+    </div>
+    <div
+        class="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-neutral-900/50 rounded-full filter blur-[120px] pointer-events-none">
+    </div>
+
+    <!-- Card Box -->
+    <div
+        class="w-full max-w-md bg-black/40 backdrop-blur-xl border border-neutral-800/80 p-8 md:p-10 rounded-2xl shadow-2xl relative z-10 transition-all duration-500 hover:border-neutral-700/40">
+
+        <!-- Header / Logo -->
+        <div class="text-center mb-8">
+            <a href="#none" class="inline-block">
+                <h1 class="font-style-quick-sand text-3xl tracking-[0.1em] text-[#dfc384] font-light mb-1">Noiré</h1>
+                <p class="text-[10px] tracking-widest text-neutral-400 uppercase">Elegance in Every Mystery.</p>
+            </a>
+            <h2 class="font-sans text-xl mt-6 text-white font-medium tracking-wide">Buat Akun Baru</h2>
+            <p class="text-neutral-500 text-xs mt-1">Bergabunglah bersama kami dan nikmati kemudahan akses</p>
+        </div>
+
+        <!-- Form Pendaftaran -->
+        <form id="authForm" action="index.html" method="POST" class="space-y-4">
+
+            <!-- Input Nama Lengkap -->
+            <div>
+                <label for="fullname"
+                    class="block text-[11px] font-medium uppercase tracking-wider text-neutral-400 mb-2">Nama
+                    Lengkap</label>
+                <div class="relative">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-neutral-500">
+                        <i data-lucide="user" class="w-4 h-4"></i>
+                    </span>
+                    <input type="text" id="fullname" name="fullname" required
+                        class="w-full bg-neutral-950/60 border border-neutral-800 rounded-lg pl-10 pr-4 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-[#dfc384] transition-all duration-300 gold-focus"
+                        placeholder="Nama lengkap Anda">
+                </div>
+            </div>
+
+            <!-- Input Email -->
+            <div>
+                <label for="email"
+                    class="block text-[11px] font-medium uppercase tracking-wider text-neutral-400 mb-2">Alamat
+                    Email</label>
+                <div class="relative">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-neutral-500">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                    </span>
+                    <input type="email" id="email" name="email" required
+                        class="w-full bg-neutral-950/60 border border-neutral-800 rounded-lg pl-10 pr-4 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-[#dfc384] transition-all duration-300 gold-focus"
+                        placeholder="nama@email.com">
+                </div>
+            </div>
+
+            <!-- Input Kata Sandi -->
+            <div>
+                <label for="password"
+                    class="block text-[11px] font-medium uppercase tracking-wider text-neutral-400 mb-2">Kata
+                    Sandi</label>
+                <div class="relative">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-neutral-500">
+                        <i data-lucide="lock" class="w-4 h-4"></i>
+                    </span>
+                    <input type="password" id="password" name="password" required
+                        class="w-full bg-neutral-950/60 border border-neutral-800 rounded-lg pl-10 pr-12 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-[#dfc384] transition-all duration-300 gold-focus"
+                        placeholder="••••••••">
+
+                    <button type="button"
+                        class="toggle-password absolute inset-y-0 right-0 flex items-center pr-3.5 text-neutral-500 hover:text-neutral-300 transition-colors cursor-pointer"
+                        data-target="password">
+                        <i data-lucide="eye" class="w-4 h-4 eye-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Konfirmasi Kata Sandi -->
+            <div>
+                <label for="confirm-password"
+                    class="block text-[11px] font-medium uppercase tracking-wider text-neutral-400 mb-2">Konfirmasi Kata
+                    Sandi</label>
+                <div class="relative">
+                    <span
+                        class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-neutral-500">
+                        <i data-lucide="lock" class="w-4 h-4"></i>
+                    </span>
+                    <input type="password" id="confirm-password" name="confirm_password" required
+                        class="w-full bg-neutral-950/60 border border-neutral-800 rounded-lg pl-10 pr-12 py-3 text-sm text-white placeholder-neutral-600 focus:outline-none focus:border-[#dfc384] transition-all duration-300 gold-focus"
+                        placeholder="••••••••">
+
+                    <button type="button"
+                        class="toggle-password absolute inset-y-0 right-0 flex items-center pr-3.5 text-neutral-500 hover:text-neutral-300 transition-colors cursor-pointer"
+                        data-target="confirm-password">
+                        <i data-lucide="eye" class="w-4 h-4 eye-icon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TOMBOL TRIGGER MINTA KODE OTP -->
+            <div id="request-otp-container" class="pt-2">
+                <button type="button" id="btnRequestOTP"
+                    class="w-full bg-gradient-to-r from-[#bfa15f] via-[#e7d095] to-[#bfa15f] hover:from-[#e7d095] hover:to-[#bfa15f] text-neutral-950 font-semibold text-xs uppercase tracking-widest py-3.5 px-4 rounded-lg shadow-lg hover:shadow-[#dfc384]/10 hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 cursor-pointer">
+                    Minta Kode Verifikasi
+                </button>
+            </div>
+
+            <!-- ================= FITUR OTP (MUNCUL DI BAWAH KONFIRMASI PASSWORD) ================= -->
+            <div id="otp-wrapper"
+                class="max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-in-out space-y-4">
+                <div class="border-t border-neutral-800/60 my-2 pt-4">
+                    <div class="flex items-center gap-2 mb-2 text-[#dfc384]">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i>
+                        <label class="block text-[11px] font-medium uppercase tracking-wider">Kode Verifikasi
+                            (OTP)</label>
+                    </div>
+                    <p class="text-[11px] text-neutral-500 mb-3 leading-relaxed">
+                        Masukkan 4 digit kode yang kami kirimkan ke email Anda.
+                    </p>
+
+                    <!-- Kotak Input OTP Kohesif -->
+                    <div class="flex justify-between gap-3 max-w-[280px] mx-auto" id="otp-container">
+                        <input type="number" maxlength="1"
+                            class="w-12 h-12 bg-neutral-950/80 border border-neutral-800 focus:border-[#dfc384] text-center text-lg font-semibold text-white rounded-xl focus:outline-none transition-all duration-300 gold-focus"
+                            disabled>
+                        <input type="number" maxlength="1"
+                            class="w-12 h-12 bg-neutral-950/80 border border-neutral-800 focus:border-[#dfc384] text-center text-lg font-semibold text-white rounded-xl focus:outline-none transition-all duration-300 gold-focus"
+                            disabled>
+                        <input type="number" maxlength="1"
+                            class="w-12 h-12 bg-neutral-950/80 border border-neutral-800 focus:border-[#dfc384] text-center text-lg font-semibold text-white rounded-xl focus:outline-none transition-all duration-300 gold-focus"
+                            disabled>
+                        <input type="number" maxlength="1"
+                            class="w-12 h-12 bg-neutral-950/80 border border-neutral-800 focus:border-[#dfc384] text-center text-lg font-semibold text-white rounded-xl focus:outline-none transition-all duration-300 gold-focus"
+                            disabled>
+                    </div>
+
+                    <p class="text-center text-[11px] text-neutral-500 mt-3 font-light">
+                        Tidak menerima kode?
+                        <a href="#" id="resend-link"
+                            class="text-[#dfc384] font-medium hover:underline pointer-events-none opacity-50">Kirim
+                            Ulang (<span id="timer">59</span>s)</a>
+                    </p>
+                </div>
+
+                <!-- Checkbox Syarat & Ketentuan -->
+                <div class="flex items-start pt-1">
+                    <input type="checkbox" id="terms" name="terms" required disabled
+                        class="w-4 h-4 mt-0.5 rounded border-neutral-800 bg-neutral-950 text-[#dfc384] focus:ring-0 focus:ring-offset-0 cursor-pointer accent-[#dfc384]">
+                    <label for="terms"
+                        class="ml-2 text-xs text-neutral-400 select-none cursor-pointer hover:text-neutral-300 transition-colors leading-relaxed">
+                        Saya menyetujui <a href="#" class="text-[#dfc384] hover:underline">Syarat & Ketentuan</a> serta
+                        <a href="#" class="text-[#dfc384] hover:underline">Kebijakan Privasi</a>.
+                    </label>
+                </div>
+
+                <!-- Tombol Submit Akhir -->
+                <button type="submit" id="btnSubmitForm" disabled
+                    class="w-full bg-gradient-to-r from-[#bfa15f] via-[#e7d095] to-[#bfa15f] hover:from-[#e7d095] hover:to-[#bfa15f] text-neutral-950 font-semibold text-xs uppercase tracking-widest py-3.5 px-4 rounded-lg shadow-lg opacity-50 cursor-not-allowed transition-all duration-300">
+                    Daftar Akun Sekarang
+                </button>
+            </div>
+        </form>
+
+        <!-- Pembatas / Or -->
+        <div class="relative my-6">
+            <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-neutral-800/50"></div>
+            </div>
+            <div class="relative flex justify-center text-[10px] uppercase">
+                <span class="bg-[#0b0b0b] px-3 text-neutral-500 tracking-wider font-light">Atau daftar dengan</span>
+            </div>
+        </div>
+
+        <!-- Google Register -->
+        <button type="button"
+            class="w-full bg-neutral-950/40 border border-neutral-800 hover:bg-neutral-900/40 hover:border-neutral-700 text-neutral-300 rounded-lg py-2.5 px-4 text-xs font-medium flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer">
+            <svg class="w-4 h-4" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                <path fill="currentColor"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                <path fill="currentColor"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                <path fill="currentColor"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+            </svg>
+            Daftar dengan Google
+        </button>
+
+        <!-- Footer Link ke Login -->
+        <p class="text-center text-xs text-neutral-500 mt-8 font-light">
+            Sudah memiliki akun?
+            <a href="loginpage.html" class="text-[#dfc384] font-medium hover:underline ml-1">Masuk Sekarang</a>
+        </p>
+
+    </div>
+
+    <script>
+        // Inisialisasi Lucide Icons
+        lucide.createIcons();
+
+        // 1. Logika Show / Hide Password
+        const togglePasswordButtons = document.querySelectorAll('.toggle-password');
+        togglePasswordButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const targetId = this.getAttribute('data-target');
+                const passwordInput = document.getElementById(targetId);
+                const eyeIcon = this.querySelector('.eye-icon');
+
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                const currentIcon = eyeIcon.getAttribute('data-lucide');
+                eyeIcon.setAttribute('data-lucide', currentIcon === 'eye' ? 'eye-off' : 'eye');
+
+                lucide.createIcons();
+            });
+        });
+
+        // 2. Logika Alur Validasi Form ke Efek Scroll & Buka Panel OTP
+        const btnRequestOTP = document.getElementById('btnRequestOTP');
+        const otpWrapper = document.getElementById('otp-wrapper');
+        const reqOtpContainer = document.getElementById('request-otp-container');
+        const otpInputs = document.querySelectorAll('#otp-container input');
+        const termsCheckbox = document.getElementById('terms');
+        const btnSubmitForm = document.getElementById('btnSubmitForm');
+
+        btnRequestOTP.addEventListener('click', function () {
+            // Validasi manual elemen input form utama sebelum membuka OTP
+            const fields = [
+                document.getElementById('fullname'),
+                document.getElementById('email'),
+                document.getElementById('password'),
+                document.getElementById('confirm-password')
+            ];
+
+            const allValid = fields.reduce((acc, field) => acc && field.reportValidity(), true);
+
+            if (allValid) {
+                // Sembunyikan tombol "Minta OTP" bawaan lama
+                reqOtpContainer.style.display = 'none';
+
+                // Buka kontainer OTP dengan transisi ketinggian dan kepekatan halus
+                otpWrapper.style.maxHeight = '500px';
+                otpWrapper.style.opacity = '1';
+
+                // Aktifkan input fields pendukung
+                otpInputs.forEach((input, idx) => {
+                    if (idx === 0) input.removeAttribute('disabled');
+                });
+                termsCheckbox.removeAttribute('disabled');
+                btnSubmitForm.removeAttribute('disabled');
+                btnSubmitForm.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnSubmitForm.classList.add('cursor-pointer');
+
+                // Efek Scroll Otomatis Menuju Area OTP yang Baru Saja Terbuka
+                setTimeout(() => {
+                    otpWrapper.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    otpInputs[0].focus();
+                    startOTPTimer();
+                }, 300);
+            }
+        });
+
+        // 3. Logika Navigasi Otomatis (Auto-Tab) Input OTP Kotak Terpisah
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (input.value.length > 1) {
+                    input.value = input.value.slice(0, 1);
+                }
+                if (input.value !== "" && index < otpInputs.length - 1) {
+                    otpInputs[index + 1].removeAttribute('disabled');
+                    otpInputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === "Backspace" && input.value === "" && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+        });
+
+        // 4. Timer Hitung Mundur Pengiriman Ulang OTP
+        function startOTPTimer() {
+            let timeLeft = 59;
+            const timerDisplay = document.getElementById('timer');
+            const resendLink = document.getElementById('resend-link');
+
+            const countdown = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    resendLink.innerHTML = "Kirim Ulang Kode";
+                    resendLink.classList.remove('opacity-50', 'pointer-events-none');
+                } else {
+                    timerDisplay.textContent = timeLeft;
+                }
+                timeLeft -= 1;
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>

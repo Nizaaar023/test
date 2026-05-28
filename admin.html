@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noiré Merchant Dashboard</title>
+
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js"></script>
+
+    <style>
+        :root {
+            --color-gold-light: #f1dfc4;
+            --color-gold: #c5a880;
+            --color-gold-dark: #a38053;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: #030303;
+            color: #f3f4f6;
+        }
+
+        .font-serif {
+            font-family: var(--font-serif);
+        }
+
+        /* Luxury Glassmorphism styling */
+        .glass {
+            background: rgba(12, 12, 12, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(197, 168, 128, 0.08);
+        }
+
+        .glass-premium {
+            background: linear-gradient(135deg, rgba(18, 18, 18, 0.8) 0%, rgba(6, 6, 6, 0.98) 100%);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(197, 168, 128, 0.15);
+        }
+
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #f1dfc4 0%, #c5a880 50%, #a38053 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gold-gradient {
+            background: linear-gradient(135deg, #f1dfc4 0%, #c5a880 50%, #a38053 100%);
+        }
+
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar {
+            height: 5px;
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #030303;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c5a880/40;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body class="selection:bg-[#c5a880] selection:text-neutral-900 min-h-screen flex flex-col">
+
+    <!-- Ambient glowing blobs -->
+    <div
+        class="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#c5a880]/3 rounded-full blur-[160px] pointer-events-none">
+    </div>
+    <div class="absolute bottom-0 left-10 w-96 h-96 bg-amber-950/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <!-- Navbar -->
+    <nav class="border-b border-neutral-900/60 py-5 z-20 glass sticky top-0">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="font-serif text-xl tracking-[0.2em] text-white">Noiré</span>
+                <span
+                    class="text-[9px] uppercase tracking-widest bg-[#c5a880]/15 text-[#c5a880] px-2 py-0.5 border border-[#c5a880]/20 rounded font-semibold">Merchant
+                    Admin</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="index.html"
+                    class="text-xs uppercase tracking-wider text-neutral-400 hover:text-white transition-colors">Lihat
+                    Toko</a>
+                <div class="h-4 w-[1px] bg-neutral-950"></div>
+                <button onclick="fetchTransactions()"
+                    class="p-2 rounded-full border border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-900 transition-all"
+                    title="Segarkan Data">
+                    <i data-lucide="refresh-cw" class="w-4 h-4" id="refresh-icon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Body -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-6 py-10 z-10 space-y-10">
+
+        <!-- Header Section -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-semibold uppercase tracking-wider text-white">Dashboard Transaksi</h1>
+                <p class="text-xs text-neutral-500 font-light mt-1">Kelola, pantau, dan simulasikan callback payment
+                    gateway
+                    Noiré Anda secara langsung.</p>
+            </div>
+            <div class="flex items-center gap-2 bg-[#c5a880]/5 border border-[#c5a880]/10 px-4 py-2.5 rounded-xl">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <span class="text-[10px] uppercase tracking-widest text-[#c5a880] font-semibold">Auto-refresh Aktif
+                    (5s)</span>
+            </div>
+        </div>
+
+        <!-- KPI Metric Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- Card 1: Revenue -->
+            <div class="glass p-6 rounded-2xl border border-neutral-900 flex items-center justify-between shadow-lg">
+                <div class="space-y-1">
+                    <p class="text-[10px] uppercase tracking-widest text-neutral-500">Total Pendapatan</p>
+                    <p id="kpi-revenue" class="font-serif text-xl text-white font-medium tracking-wide">Rp 0</p>
+                </div>
+                <div
+                    class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center border border-emerald-500/10">
+                    <i data-lucide="wallet" class="w-5 h-5"></i>
+                </div>
+            </div>
+
+            <!-- Card 2: Total Tx -->
+            <div class="glass p-6 rounded-2xl border border-neutral-900 flex items-center justify-between shadow-lg">
+                <div class="space-y-1">
+                    <p class="text-[10px] uppercase tracking-widest text-neutral-500">Jumlah Transaksi</p>
+                    <p id="kpi-transactions" class="text-xl font-semibold text-white">0</p>
+                </div>
+                <div
+                    class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center border border-blue-500/10">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                </div>
+            </div>
+
+            <!-- Card 3: Pending -->
+            <div class="glass p-6 rounded-2xl border border-neutral-900 flex items-center justify-between shadow-lg">
+                <div class="space-y-1">
+                    <p class="text-[10px] uppercase tracking-widest text-neutral-500">Menunggu Bayar</p>
+                    <p id="kpi-pending" class="text-xl font-semibold text-amber-500">0</p>
+                </div>
+                <div
+                    class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-xl flex items-center justify-center border border-amber-500/10">
+                    <i data-lucide="clock" class="w-5 h-5"></i>
+                </div>
+            </div>
+
+            <!-- Card 4: Success Rate -->
+            <div class="glass p-6 rounded-2xl border border-neutral-900 flex items-center justify-between shadow-lg">
+                <div class="space-y-1">
+                    <p class="text-[10px] uppercase tracking-widest text-neutral-500">Tingkat Sukses</p>
+                    <p id="kpi-rate" class="text-xl font-semibold text-white">0%</p>
+                </div>
+                <div
+                    class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center border border-indigo-500/10">
+                    <i data-lucide="percent" class="w-5 h-5"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Main Table Container -->
+        <div class="glass rounded-2xl border border-neutral-900/80 overflow-hidden shadow-xl">
+            <div class="px-6 py-5 border-b border-neutral-950 flex justify-between items-center bg-neutral-950/20">
+                <h2 class="text-xs uppercase tracking-widest text-neutral-400 font-semibold">Histori Transaksi</h2>
+                <span id="orders-count-label" class="text-[10px] text-neutral-500 font-mono font-semibold">Menampilkan 0
+                    pesanan</span>
+            </div>
+
+            <!-- Table Scroll Wrapper -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs font-light">
+                    <thead
+                        class="bg-neutral-950/60 uppercase text-[9px] tracking-widest text-neutral-500 border-b border-neutral-950">
+                        <tr>
+                            <th scope="col" class="px-6 py-4">ID Transaksi</th>
+                            <th scope="col" class="px-6 py-4">Tanggal</th>
+                            <th scope="col" class="px-6 py-4">Pesanan Items</th>
+                            <th scope="col" class="px-6 py-4">Total Biaya</th>
+                            <th scope="col" class="px-6 py-4">Metode Bayar</th>
+                            <th scope="col" class="px-6 py-4 text-center">Status</th>
+                            <th scope="col" class="px-6 py-4 text-right">Aksi Simulasi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transaction-rows" class="divide-y divide-neutral-950">
+                        <!-- Loading Row -->
+                        <tr>
+                            <td colspan="7"
+                                class="text-center py-16 text-neutral-500 uppercase tracking-widest text-[10px]">
+                                <div
+                                    class="w-5 h-5 rounded-full border-2 border-neutral-800 border-t-gold-500 animate-spin mx-auto mb-3">
+                                </div>
+                                Memuat data transaksi...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Dynamic Details Drawer Modal (Hidden by default) -->
+    <div id="details-modal"
+        class="fixed inset-0 z-50 invisible transition-all duration-300 flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div id="details-backdrop" class="absolute inset-0 bg-black/85 opacity-0 transition-opacity duration-300"
+            onclick="closeDetailsModal()"></div>
+
+        <!-- Modal panel -->
+        <div id="details-panel"
+            class="relative max-w-lg w-full scale-95 opacity-0 transition-all duration-300 glass-premium rounded-2xl border border-neutral-900 overflow-hidden shadow-2xl p-6 md:p-8 space-y-6">
+
+            <!-- Close button -->
+            <button onclick="closeDetailsModal()"
+                class="absolute top-5 right-5 text-neutral-400 hover:text-white p-1 hover:bg-neutral-900 rounded-full transition-all">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+
+            <div class="border-b border-neutral-950 pb-4">
+                <span class="text-[9px] uppercase tracking-widest text-[#c5a880] font-semibold">Rincian Transaksi</span>
+                <h3 id="modal-txn-id" class="font-mono text-lg text-white font-semibold tracking-wider mt-1">
+                    TXN-00000-0000</h3>
+            </div>
+
+            <div class="space-y-4 max-h-60 overflow-y-auto pr-1" id="modal-items-list">
+                <!-- populated dynamically -->
+            </div>
+
+            <div class="border-t border-neutral-950 pt-4 space-y-2 text-xs font-light">
+                <div class="flex justify-between text-neutral-400">
+                    <span>Subtotal</span>
+                    <span id="modal-subtotal" class="font-mono text-white">Rp 0</span>
+                </div>
+                <div class="flex justify-between text-neutral-400">
+                    <span>Pajak (10%)</span>
+                    <span id="modal-tax" class="font-mono text-white">Rp 0</span>
+                </div>
+                <div class="flex justify-between text-neutral-400">
+                    <span>Biaya Pengiriman</span>
+                    <span id="modal-shipping" class="font-mono text-white">Rp 0</span>
+                </div>
+                <div class="border-t border-neutral-900 pt-3 flex justify-between items-end">
+                    <span class="font-semibold uppercase tracking-wider text-white">Total Tagihan</span>
+                    <span id="modal-total" class="font-serif text-base text-gold-light font-semibold">Rp 0</span>
+                </div>
+            </div>
+
+            <div class="bg-black/40 p-4 rounded-xl border border-neutral-950 flex justify-between items-center text-xs">
+                <div>
+                    <span class="text-[9px] text-neutral-500 uppercase tracking-widest">Status Terkini</span>
+                    <p id="modal-status" class="uppercase font-semibold tracking-wider mt-1 text-white">Pending</p>
+                </div>
+                <div>
+                    <span class="text-[9px] text-neutral-500 uppercase tracking-widest">Metode Terpilih</span>
+                    <p id="modal-method" class="uppercase font-semibold tracking-wider mt-1 text-white">-</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer
+        class="w-full border-t border-neutral-950 py-5 text-center text-[9px] text-neutral-600 uppercase tracking-widest bg-black/20 mt-auto">
+        <p>&copy; 2026 NOIRE PARFUM. PORTAL KONTROL MERCHANT MANDIRI.</p>
+    </footer>
+
+    <!-- ==================== LOGIC SCRIPTS ==================== -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        let transactions = [];
+        let autoRefreshInterval = null;
+
+        // Formatting utilities
+        function formatIDR(number) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(number);
+        }
+
+        // Fetch transactions from backend API with Local Storage fallback
+        async function fetchTransactions() {
+            try {
+                const response = await fetch('/api/transactions');
+                if (response.ok) {
+                    transactions = await response.json();
+                    renderDashboard();
+                } else {
+                    throw new Error('Gagal memuat transaksi dari server.');
+                }
+            } catch (error) {
+                console.warn('Backend offline atau gagal memuat data, mengambil dari Local Storage:', error);
+                transactions = JSON.parse(localStorage.getItem('noire_transactions')) || [];
+                renderDashboard();
+            }
+        }
+
+        // Document loaded handler
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchTransactions();
+
+            // Auto-poll database updates every 5 seconds
+            autoRefreshInterval = setInterval(fetchTransactions, 5000);
+        });
+
+        window.addEventListener('beforeunload', () => {
+            if (autoRefreshInterval) clearInterval(autoRefreshInterval);
+        });
+
+
+
+        // Display error message in table body
+        function renderErrorRow(message) {
+            const body = document.getElementById('transaction-rows');
+            body.innerHTML = `
+        <tr>
+          <td colspan="7" class="text-center py-16 text-rose-400 font-semibold uppercase tracking-widest text-[10px]">
+            <i data-lucide="circle-alert" class="w-5 h-5 mx-auto mb-2 text-rose-500"></i>
+            ${message}
+          </td>
+        </tr>
+      `;
+            lucide.createIcons();
+        }
+
+        // Process metric logic and render lists
+        function renderDashboard() {
+            // 1. Calculate KPI Metrics
+            let totalRevenue = 0;
+            let pendingCount = 0;
+            let successCount = 0;
+
+            transactions.forEach(t => {
+                if (t.status === 'SUCCESS') {
+                    totalRevenue += t.total;
+                    successCount++;
+                } else if (t.status === 'PENDING') {
+                    pendingCount++;
+                }
+            });
+
+            const successRate = transactions.length > 0
+                ? Math.round((successCount / transactions.length) * 100)
+                : 0;
+
+            // Update KPI widgets in UI
+            document.getElementById('kpi-revenue').innerText = formatIDR(totalRevenue);
+            document.getElementById('kpi-transactions').innerText = transactions.length;
+            document.getElementById('kpi-pending').innerText = pendingCount;
+            document.getElementById('kpi-rate').innerText = `${successRate}%`;
+
+            document.getElementById('orders-count-label').innerText = `Menampilkan ${transactions.length} pesanan`;
+
+            // 2. Render Rows
+            const body = document.getElementById('transaction-rows');
+
+            if (transactions.length === 0) {
+                body.innerHTML = `
+          <tr>
+            <td colspan="7" class="text-center py-20 text-neutral-600 uppercase tracking-widest text-[10px]">
+              <i data-lucide="inbox" class="w-6 h-6 mx-auto mb-3 stroke-[1]"></i>
+              Belum ada data transaksi yang tercatat
+            </td>
+          </tr>
+        `;
+                lucide.createIcons();
+                return;
+            }
+
+            let rowsHtml = '';
+            transactions.forEach(txn => {
+                // Items string summaries
+                const itemsSummary = txn.items.map(item => `${item.name} (${item.quantity}x)`).join(', ');
+
+                // Status Badge Style mapping
+                let statusBadge = '';
+                if (txn.status === 'SUCCESS') {
+                    statusBadge = '<span class="px-2.5 py-1 text-[9px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full uppercase">Success</span>';
+                } else if (txn.status === 'PENDING') {
+                    statusBadge = '<span class="px-2.5 py-1 text-[9px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full uppercase">Pending</span>';
+                } else if (txn.status === 'FAILED') {
+                    statusBadge = '<span class="px-2.5 py-1 text-[9px] font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20 rounded-full uppercase">Failed</span>';
+                } else {
+                    statusBadge = '<span class="px-2.5 py-1 text-[9px] font-semibold bg-neutral-800 text-neutral-400 border border-neutral-900 rounded-full uppercase">Cancelled</span>';
+                }
+
+                // Actions buttons depending on current status
+                let actionButtons = '-';
+                if (txn.status === 'PENDING') {
+                    actionButtons = `
+            <div class="flex justify-end gap-1.5">
+              <button onclick="simulateAction('${txn.id}', 'pay')" class="px-2 py-1.5 rounded-lg bg-emerald-500 text-neutral-950 font-bold hover:bg-emerald-400 transition-colors uppercase tracking-wider text-[9px] cursor-pointer" title="Simulasikan Sukses">Sukses</button>
+              <button onclick="simulateAction('${txn.id}', 'fail')" class="px-2 py-1.5 rounded-lg bg-rose-500/10 text-rose-400 border border-rose-500/20 hover:bg-rose-500 hover:text-black transition-all uppercase tracking-wider text-[9px] cursor-pointer" title="Simulasikan Gagal">Gagal</button>
+              <button onclick="simulateAction('${txn.id}', 'cancel')" class="px-2 py-1.5 rounded-lg bg-neutral-900 text-neutral-400 border border-neutral-800 hover:border-neutral-700 transition-all uppercase tracking-wider text-[9px] cursor-pointer" title="Batalkan Pesanan">Batal</button>
+            </div>
+          `;
+                }
+
+                const dateStr = new Date(txn.createdAt).toLocaleString('id-ID', {
+                    month: 'short',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                rowsHtml += `
+          <tr class="hover:bg-neutral-950/40 transition-colors duration-200">
+            <td class="px-6 py-4 font-mono font-semibold tracking-wider text-white">
+              <button onclick="viewTransactionDetails('${txn.id}')" class="hover:text-[#c5a880] transition-colors cursor-pointer text-left focus:outline-none">
+                ${txn.id}
+              </button>
+            </td>
+            <td class="px-6 py-4 text-neutral-400 font-light">${dateStr}</td>
+            <td class="px-6 py-4 text-white font-medium max-w-xs truncate" title="${itemsSummary}">${itemsSummary}</td>
+            <td class="px-6 py-4 font-mono font-medium text-gold-light">${formatIDR(txn.total)}</td>
+            <td class="px-6 py-4 text-neutral-400 uppercase tracking-wider">${txn.paymentMethod || '-'}</td>
+            <td class="px-6 py-4 text-center">${statusBadge}</td>
+            <td class="px-6 py-4 text-right">${actionButtons}</td>
+          </tr>
+        `;
+            });
+            body.innerHTML = rowsHtml;
+            lucide.createIcons();
+        }
+
+        // Call simulated POST action handlers in backend API
+        async function simulateAction(txnId, actionType) {
+            let endpoint = `/api/transactions/${txnId}/pay`;
+            let payload = { paymentMethod: 'Callback Admin Simulator' };
+
+            if (actionType === 'fail') {
+                endpoint = `/api/transactions/${txnId}/simulate-fail`;
+                payload = {};
+            } else if (actionType === 'cancel') {
+                endpoint = `/api/transactions/${txnId}/cancel`;
+                payload = {};
+            }
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    fetchTransactions(); // reload instantly
+                } else {
+                    alert('Gagal mengeksekusi simulasi aksi.');
+                }
+            } catch (error) {
+                console.warn('Backend offline, executing mock action in Local Storage:', error);
+
+                // --- LOCAL STORAGE BACKEND FALLBACK ---
+                let localTxns = JSON.parse(localStorage.getItem('noire_transactions')) || [];
+                const idx = localTxns.findIndex(t => t.id === txnId);
+
+                if (idx !== -1) {
+                    if (actionType === 'pay') {
+                        localTxns[idx].status = 'SUCCESS';
+                        localTxns[idx].paymentMethod = 'Callback Admin Simulator';
+                    } else if (actionType === 'fail') {
+                        localTxns[idx].status = 'FAILED';
+                    } else if (actionType === 'cancel') {
+                        localTxns[idx].status = 'CANCELLED';
+                    }
+                    localTxns[idx].updatedAt = new Date().toISOString();
+                    localStorage.setItem('noire_transactions', JSON.stringify(localTxns));
+                    fetchTransactions();
+                }
+            }
+        }
+
+        // Display Detail drawer modal
+        function viewTransactionDetails(txnId) {
+            const txn = transactions.find(t => t.id === txnId);
+            if (!txn) return;
+
+            // Populate details modal data
+            document.getElementById('modal-txn-id').innerText = txn.id;
+
+            // Calculate pricing
+            document.getElementById('modal-subtotal').innerText = formatIDR(txn.subtotal);
+            document.getElementById('modal-tax').innerText = formatIDR(txn.tax);
+            document.getElementById('modal-shipping').innerText = formatIDR(txn.shipping);
+            document.getElementById('modal-total').innerText = formatIDR(txn.total);
+
+            // Status badges
+            const statusElement = document.getElementById('modal-status');
+            statusElement.innerText = txn.status;
+            statusElement.className = 'uppercase font-semibold tracking-wider mt-1';
+            if (txn.status === 'SUCCESS') statusElement.classList.add('text-emerald-400');
+            else if (txn.status === 'PENDING') statusElement.classList.add('text-amber-500');
+            else if (txn.status === 'FAILED') statusElement.classList.add('text-rose-400');
+            else statusElement.classList.add('text-neutral-400');
+
+            document.getElementById('modal-method').innerText = txn.paymentMethod || '-';
+
+            // Items list table format inside modal
+            const itemsContainer = document.getElementById('modal-items-list');
+            let itemsHtml = '';
+            txn.items.forEach(item => {
+                itemsHtml += `
+          <div class="flex items-center justify-between gap-4 bg-neutral-950/60 p-3.5 rounded-xl border border-neutral-950">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-neutral-900 rounded p-0.5 flex items-center justify-center">
+                <img src="${item.img}" alt="${item.name}" class="max-h-full max-w-full object-contain" onerror="this.src='https://placehold.co/100x100/0a0a0a/c5a880?text=Noire'">
+              </div>
+              <div>
+                <h4 class="font-semibold text-white uppercase text-[10px] tracking-wider">${item.name}</h4>
+                <p class="text-[9px] text-neutral-500 font-light mt-0.5">${item.size} • ${item.quantity} Unit</p>
+              </div>
+            </div>
+            <span class="font-mono text-[11px] font-semibold text-gold-light">${formatIDR(item.price * item.quantity)}</span>
+          </div>
+        `;
+            });
+            itemsContainer.innerHTML = itemsHtml;
+
+            // Reveal modal
+            const modal = document.getElementById('details-modal');
+            const backdrop = document.getElementById('details-backdrop');
+            const panel = document.getElementById('details-panel');
+
+            modal.classList.remove('invisible');
+            setTimeout(() => {
+                backdrop.classList.add('opacity-100');
+                panel.classList.remove('scale-95', 'opacity-0');
+                panel.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        // Hide Modal drawer
+        function closeDetailsModal() {
+            const modal = document.getElementById('details-modal');
+            const backdrop = document.getElementById('details-backdrop');
+            const panel = document.getElementById('details-panel');
+
+            backdrop.classList.remove('opacity-100');
+            panel.classList.remove('scale-100', 'opacity-100');
+            panel.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                modal.classList.add('invisible');
+            }, 300);
+        }
+    </script>
+</body>
+
+</html>
